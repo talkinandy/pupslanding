@@ -123,13 +123,14 @@ export default function Home() {
         </div>
 
         {/* Floating character in water */}
-        <div className="absolute bottom-0 right-20 hidden md:block">
+        <div className="absolute bottom-0 left-0 right-0 hidden md:block">
           <Image
             src="/images/floating-character.svg"
             alt="Floating Character"
-            width={100}
-            height={100}
-            className="transform -translate-y-8 animate-bounce"
+            width={1440}
+            height={200}
+            className="transform -translate-y-12 animate-float opacity-90 hover:scale-105 transition-transform duration-300"
+            style={{ objectFit: 'contain' }}
           />
         </div>
       </section>
