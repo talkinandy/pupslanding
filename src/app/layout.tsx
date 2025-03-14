@@ -17,11 +17,11 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "PUPS Bot - Advanced Runes Trading Bot",
   description: "The first advanced Runes Telegram trading bot for Odin!",
-  metadataBase: new URL('https://pupsbot.netlify.app'),
+  metadataBase: new URL('https://pupslanding.netlify.app'),
   openGraph: {
     title: "PUPS Bot - Advanced Runes Trading Bot",
     description: "The first advanced Runes Telegram trading bot for Odin!",
-    url: 'https://pupsbot.netlify.app',
+    url: 'https://pupslanding.netlify.app',
     siteName: 'PUPS Bot',
     images: [
       {
@@ -74,6 +74,17 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
+        <meta property="og:title" content="PUPS Bot - Advanced Runes Trading Bot" />
+        <meta property="og:description" content="The first advanced Runes Telegram trading bot for Odin!" />
+        <meta property="og:image" content="https://pupslanding.netlify.app/images/social-preview.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content="https://pupslanding.netlify.app" />
+        <meta property="og:type" content="website" />
+        <meta name="telegram:image" content="https://pupslanding.netlify.app/images/social-preview.png" />
+        <meta name="telegram:title" content="PUPS Bot - Advanced Runes Trading Bot" />
+        <meta name="telegram:description" content="The first advanced Runes Telegram trading bot for Odin!" />
+        <meta name="theme-color" content="#25ad59" />
         <link
           rel="stylesheet"
           href="https://web-assets.same.dev/629347999/863155112.ttf"
