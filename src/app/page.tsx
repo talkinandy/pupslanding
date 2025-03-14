@@ -101,7 +101,8 @@ export default function Home() {
               The first advanced Runes Telegram trading bot for Odin!
             </p>
 
-            <div className="flex flex-col items-center md:items-start gap-6">
+            {/* Desktop form */}
+            <div className="hidden md:flex flex-col items-center md:items-start gap-6">
               <input
                 type="text"
                 value={inviteCode}
@@ -134,7 +135,7 @@ export default function Home() {
       </section>
       
       {/* Mobile Sticky Form */}
-      <div className="fixed bottom-0 left-0 right-0 bg-primary/95 backdrop-blur-md p-4 shadow-lg md:hidden z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-[#0574f9]/95 backdrop-blur-md p-4 shadow-lg md:hidden z-50">
         <div className="flex flex-col gap-3 max-w-md mx-auto">
           <input
             type="text"
