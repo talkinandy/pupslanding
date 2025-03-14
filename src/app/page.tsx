@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { SOCIAL_LINKS } from "@/lib/constants";
 import Link from "next/link";
 import { FEATURES } from "@/lib/constants";
 import Image from "next/image";
@@ -43,36 +42,6 @@ export default function Home() {
             Features
           </Link>
         </nav>
-
-        {/* Social Media Links */}
-        <div className="hidden md:flex items-center space-x-4">
-          <Link
-            href={SOCIAL_LINKS.TWITTER}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:opacity-80 transition"
-          >
-            <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-              <span className="text-primary text-xs font-bold">T</span>
-            </div>
-          </Link>
-          <Link
-            href={SOCIAL_LINKS.TELEGRAM}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center bg-white rounded-full w-8 h-8 hover:opacity-80 transition"
-          >
-            <span className="text-primary text-xs font-bold">TG</span>
-          </Link>
-          <Link
-            href={SOCIAL_LINKS.DISCORD}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center bg-white rounded-full w-8 h-8 hover:opacity-80 transition"
-          >
-            <span className="text-primary text-xs font-bold">D</span>
-          </Link>
-        </div>
       </header>
       
       {/* Hero Section with direct image */}
@@ -206,55 +175,6 @@ export default function Home() {
           </svg>
         </div>
       </section>
-      
-      {/* Footer */}
-      <footer className="bg-primary text-white pt-8 pb-6 px-4">
-        <div className="container mx-auto">
-          <div className="flex flex-col items-center">
-            <p className="text-center mb-4">
-              © 2024 by PUPS Bot. All rights reserved!
-            </p>
-
-            <div className="max-w-3xl text-sm text-center opacity-80">
-              <p>
-                Legal Disclaimer: PUPS Bot is a trading tool with no guarantee of financial return.
-                Users are responsible for their own trading decisions and risk management.
-                When you use PUPS Bot, you are agreeing that you have seen this disclaimer.
-              </p>
-            </div>
-
-            {/* Social media links */}
-            <div className="mt-6 mb-4 flex justify-center gap-4">
-              <a
-                href={SOCIAL_LINKS.TWITTER}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-full p-2 flex items-center justify-center"
-              >
-                <span className="text-primary text-xs font-bold">T</span>
-              </a>
-
-              <a
-                href={SOCIAL_LINKS.TELEGRAM}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-full p-2 flex items-center justify-center"
-              >
-                <span className="text-primary text-xs font-bold">TG</span>
-              </a>
-
-              <a
-                href={SOCIAL_LINKS.DISCORD}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-full p-2 flex items-center justify-center"
-              >
-                <span className="text-primary text-xs font-bold">D</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }

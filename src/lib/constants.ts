@@ -26,19 +26,7 @@ export const IMAGES = {
   FISH_CHARACTER: "/images/fish-character.svg",
   
   // FAQs section
-  FAQ_CHARACTER: "/images/faq-character.svg",
-  
-  // Social Icons
-  TWITTER_ICON: "/images/social/twitter.svg",
-  TELEGRAM_ICON: "/images/social/telegram.svg",
-  DISCORD_ICON: "/images/social/discord.svg",
-  GITHUB_ICON: "/images/social/github.svg",
-}
-
-export const SOCIAL_LINKS = {
-  TWITTER: "https://twitter.com/pupsbot",
-  TELEGRAM: "https://t.me/pupsbot",
-  DISCORD: "https://discord.gg/pupsbot"
+  FAQ_CHARACTER: "/images/faq-character.svg"
 }
 
 export const EXTERNAL_LINKS = {
@@ -53,26 +41,32 @@ export const EXTERNAL_LINKS = {
 export const FEATURES = [
   {
     title: "Instant Rune Trading",
-    description: "Trade Runes directly from Telegram on Odin with instant execution."
+    description: "Trade Runes directly from Telegram on Odin with instant execution.",
+    icon: IMAGES.FEATURE_TRADING
   },
   {
     title: "Portfolio Tracking",
-    description: "Monitor your Runes holdings, track PnL, and get price alerts."
+    description: "Monitor your Runes holdings, track PnL, and get price alerts.",
+    icon: IMAGES.FEATURE_PNL
   },
   {
     title: "Market Analysis",
-    description: "Get detailed market analysis, price charts, and trading volume data for all Runes in Odin."
+    description: "Get detailed market analysis, price charts, and trading volume data for all Runes in Odin.",
+    icon: IMAGES.FEATURE_SCANNER
   },
   {
     title: "Automated Trading",
-    description: "Set up automated Take Profit and Stop Loss for your Runes in Odin."
+    description: "Set up automated Take Profit and Stop Loss for your Runes in Odin.",
+    icon: IMAGES.FEATURE_TPSL
   },
   {
     title: "Instant Deposit & Withdrawal",
-    description: "Deposit and Withdraw from Native BTC L1 and Solana without having to leave your Telegram"
+    description: "Deposit and Withdraw from Native BTC L1 and Solana without having to leave your Telegram",
+    icon: IMAGES.FEATURE_BTC
   },
   {
     title: "Runes Data Insights",
-    description: "Scan Runes data from Odin directly from your trenches' Telegram group"
+    description: "Scan Runes data from Odin directly from your trenches' Telegram group",
+    icon: IMAGES.FEATURE_COPY
   }
 ] 
