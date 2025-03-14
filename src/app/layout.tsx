@@ -9,6 +9,30 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "PUPS Bot - Advanced Runes Trading Bot",
   description: "The first advanced Runes Telegram trading bot for Odin!",
+  metadataBase: new URL('https://pupsbot.netlify.app'),
+  openGraph: {
+    title: "PUPS Bot - Advanced Runes Trading Bot",
+    description: "The first advanced Runes Telegram trading bot for Odin!",
+    url: 'https://pupsbot.netlify.app',
+    siteName: 'PUPS Bot',
+    images: [
+      {
+        url: '/images/social-preview.png',
+        width: 1200,
+        height: 630,
+        alt: 'PUPS Bot Logo',
+      }
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'PUPS Bot - Advanced Runes Trading Bot',
+    description: 'The first advanced Runes Telegram trading bot for Odin!',
+    images: ['/images/social-preview.png'],
+    creator: '@pupsbot',
+  },
   icons: {
     icon: [
       {
