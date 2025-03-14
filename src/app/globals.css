@@ -54,8 +54,16 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Dion', sans-serif;
   }
-  p, span, div, a, button {
-    font-family: var(--font-poppins), sans-serif;
+  p {
+    font-family: var(--font-space-grotesk), sans-serif;
+  }
+  .feature-title {
+    font-family: var(--font-outfit), sans-serif;
+    @apply font-semibold tracking-wide;
+  }
+  .feature-description {
+    font-family: var(--font-space-grotesk), sans-serif;
+    @apply leading-relaxed;
   }
 }
 

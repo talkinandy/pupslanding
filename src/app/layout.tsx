@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Space_Grotesk, Outfit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import ClientBody from "./ClientBody";
 
-const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ["latin"],
+  variable: '--font-space-grotesk',
+});
+
+const outfit = Outfit({ 
+  subsets: ["latin"],
+  variable: '--font-outfit',
+});
 
 export const metadata: Metadata = {
   title: "PUPS Bot - Advanced Runes Trading Bot",
@@ -74,7 +82,11 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className={cn("min-h-screen antialiased", inter.className)}>
+      <body className={cn(
+        "min-h-screen antialiased",
+        spaceGrotesk.variable,
+        outfit.variable,
+      )}>
         <ClientBody>{children}</ClientBody>
       </body>
     </html>

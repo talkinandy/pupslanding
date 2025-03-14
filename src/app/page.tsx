@@ -24,8 +24,14 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-primary w-full h-16 flex items-center justify-between px-4 md:px-8">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-2">
-              <span className="text-primary text-xl font-bold">P</span>
+            <div className="w-12 h-12 mr-2 relative">
+              <Image
+                src="/images/pups.jpeg"
+                alt="PUPS Logo"
+                fill
+                className="object-cover rounded-full"
+                priority
+              />
             </div>
             <span className="text-3xl font-dion text-white">
               pups bot
@@ -186,10 +192,10 @@ export default function Home() {
                         </span>
                       </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-white mb-2 font-poppins">
+                    <h3 className="text-xl text-white mb-3 feature-title">
                       {feature.title}
                     </h3>
-                    <p className="text-white/80 font-poppins">
+                    <p className="text-white/80 feature-description">
                       {feature.description}
                     </p>
                   </div>
