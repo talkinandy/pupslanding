@@ -7,6 +7,24 @@ async function generateSocialPreview() {
     // Read the SVG file
     const svgBuffer = await fs.readFile(path.join(process.cwd(), 'public/images/pups-logo.svg'));
     
+    // Create a text overlay SVG
+    const textSvg = Buffer.from(`
+      <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+        <text 
+          x="600" 
+          y="500" 
+          font-family="Arial, sans-serif" 
+          font-size="48" 
+          font-weight="bold" 
+          fill="white" 
+          text-anchor="middle"
+          dominant-baseline="middle"
+        >
+          Advanced Runes Trading Bot for Odin
+        </text>
+      </svg>
+    `);
+    
     // Create a 1200x630 image (standard social media preview size)
     await sharp({
       create: {
@@ -19,10 +37,15 @@ async function generateSocialPreview() {
       .composite([
         {
           input: svgBuffer,
-          top: 115, // Center vertically (630 - 400) / 2
-          left: 400, // Center horizontally (1200 - 400) / 2
+          top: 65, // Moved up to make room for text
+          left: 400,
           width: 400,
           height: 400,
+        },
+        {
+          input: textSvg,
+          top: 0,
+          left: 0,
         }
       ])
       .png()
