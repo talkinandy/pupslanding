@@ -12,6 +12,8 @@ export default {
       fontFamily: {
         dion: ["Dion", "sans-serif"],
         poppins: ["var(--font-poppins)", "sans-serif"],
+        outfit: ["var(--font-outfit)", "sans-serif"],
+        grotesk: ["var(--font-space-grotesk)", "sans-serif"],
       },
       colors: {
         background: 'hsl(var(--background))',

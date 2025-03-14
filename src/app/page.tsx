@@ -4,11 +4,26 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { FEATURES } from "@/lib/constants";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { EXTERNAL_LINKS } from "@/lib/constants";
 
 export default function Home() {
   const [inviteCode, setInviteCode] = useState("");
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+
+  // Hide scroll indicator after scrolling down
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowScrollIndicator(false);
+      } else {
+        setShowScrollIndicator(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleJoinWhitelist = () => {
     if (!inviteCode.trim()) {
@@ -24,7 +39,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-primary w-full h-16 flex items-center justify-between px-4 md:px-8">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
-            <div className="w-12 h-12 mr-2 relative">
+            <div className="w-12 h-12 mr-2 relative logo-container">
               <Image
                 src="/images/pups.jpeg"
                 alt="PUPS Logo"
@@ -33,7 +48,7 @@ export default function Home() {
                 priority
               />
             </div>
-            <span className="text-3xl font-dion text-white">
+            <span className="text-3xl font-dion text-white text-shadow-lg">
               pups bot
             </span>
           </Link>
@@ -43,7 +58,7 @@ export default function Home() {
         <nav className="hidden md:flex items-center space-x-8">
           <Link
             href="/#features"
-            className="text-white hover:text-gray-200 transition font-poppins"
+            className="text-white hover:text-gray-200 transition nav-link"
           >
             Features
           </Link>
@@ -100,10 +115,10 @@ export default function Home() {
 
           {/* Right side: Text and CTA */}
           <div className="w-full md:w-1/2 text-center md:text-left z-10">
-            <h1 className="text-6xl md:text-7xl font-dion mb-4 text-white drop-shadow-lg">
+            <h1 className="text-6xl md:text-7xl font-dion mb-4 text-white text-shadow-lg">
               pups bot
             </h1>
-            <p className="text-xl md:text-2xl mb-10 text-white font-poppins drop-shadow">
+            <p className="text-xl md:text-2xl mb-10 text-white hero-text">
               The first advanced Runes Telegram trading bot for Odin!
             </p>
 
@@ -119,7 +134,7 @@ export default function Home() {
               <div className="w-full max-w-md">
                 <Button 
                   onClick={handleJoinWhitelist}
-                  className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-6 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-6 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 btn-pulse"
                 >
                   Join Whitelist
                 </Button>
@@ -137,12 +152,36 @@ export default function Home() {
             height={200}
             className="transform -translate-y-12 animate-float opacity-90 hover:scale-105 transition-transform duration-300"
             style={{ objectFit: 'contain' }}
+            priority
           />
         </div>
+        
+        {/* Scroll indicator */}
+        {showScrollIndicator && (
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 hidden md:block">
+            <div className="flex flex-col items-center scroll-indicator">
+              <span className="text-white text-sm mb-2">Scroll Down</span>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-6 w-6 text-white" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+                />
+              </svg>
+            </div>
+          </div>
+        )}
       </section>
       
       {/* Mobile Sticky Form */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#0574f9]/95 backdrop-blur-md p-4 shadow-lg md:hidden z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-[#0574f9]/95 backdrop-blur-md p-4 shadow-lg md:hidden z-50 transition-all duration-300">
         <div className="flex flex-col gap-3 max-w-md mx-auto">
           <input
             type="text"
@@ -153,7 +192,7 @@ export default function Home() {
           />
           <Button 
             onClick={handleJoinWhitelist}
-            className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-3 rounded-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-3 rounded-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 btn-pulse"
           >
             Join Whitelist
           </Button>
@@ -163,7 +202,7 @@ export default function Home() {
       {/* Features Section */}
       <section id="features" className="relative bg-primary py-20 overflow-hidden">
         <div className="container mx-auto px-4">
-          <h2 className="text-5xl md:text-6xl font-dion text-white mb-16 text-center">
+          <h2 className="text-5xl md:text-6xl font-dion text-white mb-16 text-center text-shadow-lg">
             features
           </h2>
 
@@ -182,12 +221,16 @@ export default function Home() {
               return (
                 <div
                   key={feature.title}
-                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/10 transition-all duration-300"
+                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 feature-card feature-card-shadow"
                 >
                   <div className="flex flex-col items-center text-center">
                     <div className="w-16 h-16 mb-4 relative flex items-center justify-center">
                       <div className="w-full h-full bg-white/20 rounded-full flex items-center justify-center">
-                        <span className="text-4xl" role="img" aria-label={feature.title}>
+                        <span 
+                          className="text-4xl emoji-hover" 
+                          role="img" 
+                          aria-label={feature.title}
+                        >
                           {emojis[feature.title]}
                         </span>
                       </div>
@@ -195,7 +238,7 @@ export default function Home() {
                     <h3 className="text-xl text-white mb-3 feature-title">
                       {feature.title}
                     </h3>
-                    <p className="text-white/80 feature-description">
+                    <p className="text-white/90 feature-description">
                       {feature.description}
                     </p>
                   </div>
