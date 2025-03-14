@@ -162,26 +162,40 @@ export default function Home() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {FEATURES.map((feature, index) => (
-              <div
-                key={feature.title}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/10 transition-all duration-300"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 mb-4 relative flex items-center justify-center">
-                    <div className="w-full h-full bg-white/20 rounded-full flex items-center justify-center">
-                      <span className="text-white text-2xl">{index + 1}</span>
+            {FEATURES.map((feature, index) => {
+              // Define emojis for each feature
+              const emojis: Record<string, string> = {
+                "Instant Rune Trading": "⚡",
+                "Portfolio Tracking": "📊",
+                "Market Analysis": "📈",
+                "Automated Trading": "🤖",
+                "Instant Deposit & Withdrawal": "💰",
+                "Runes Data Insights": "🔍"
+              };
+              
+              return (
+                <div
+                  key={feature.title}
+                  className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/10 transition-all duration-300"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-16 h-16 mb-4 relative flex items-center justify-center">
+                      <div className="w-full h-full bg-white/20 rounded-full flex items-center justify-center">
+                        <span className="text-4xl" role="img" aria-label={feature.title}>
+                          {emojis[feature.title]}
+                        </span>
+                      </div>
                     </div>
+                    <h3 className="text-xl font-semibold text-white mb-2 font-poppins">
+                      {feature.title}
+                    </h3>
+                    <p className="text-white/80 font-poppins">
+                      {feature.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-2 font-poppins">
-                    {feature.title}
-                  </h3>
-                  <p className="text-white/80 font-poppins">
-                    {feature.description}
-                  </p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
