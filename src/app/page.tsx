@@ -133,6 +133,25 @@ export default function Home() {
         </div>
       </section>
       
+      {/* Mobile Sticky Form */}
+      <div className="fixed bottom-0 left-0 right-0 bg-primary/95 backdrop-blur-md p-4 shadow-lg md:hidden z-50">
+        <div className="flex flex-col gap-3 max-w-md mx-auto">
+          <input
+            type="text"
+            value={inviteCode}
+            onChange={(e) => setInviteCode(e.target.value)}
+            placeholder="Enter your invite code"
+            className="w-full px-4 py-3 rounded-full bg-white/10 border-2 border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-all shadow-lg"
+          />
+          <Button 
+            onClick={handleJoinWhitelist}
+            className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-3 rounded-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            Join Whitelist
+          </Button>
+        </div>
+      </div>
+      
       {/* Features Section */}
       <section id="features" className="relative bg-primary py-20 overflow-hidden">
         <div className="container mx-auto px-4">
@@ -163,6 +182,9 @@ export default function Home() {
             ))}
           </div>
         </div>
+
+        {/* Add padding at the bottom to account for sticky form on mobile */}
+        <div className="h-32 md:h-0"></div>
 
         {/* Wavy divider at bottom */}
         <div className="absolute bottom-0 left-0 w-full">
