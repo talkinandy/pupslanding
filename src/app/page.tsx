@@ -262,6 +262,26 @@ export default function Home() {
           </svg>
         </div>
       </section>
+
+      {/* Footer with Loka Labs attribution */}
+      <footer className="bg-primary py-6 border-t border-white/10">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2">
+            <span className="text-white/70 text-sm">Powered by</span>
+            <div className="relative h-8 w-32">
+              <Image
+                src="/images/lokalabs_logo.png"
+                alt="Loka Labs"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+          <div className="text-center mt-4">
+            <p className="text-white/50 text-xs">© {new Date().getFullYear()} PUPS & Loka Labs. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
