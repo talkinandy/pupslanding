@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'Dion';
-  src: url('https://web-assets.same.dev/629347999/863155112.ttf') format('truetype');
+  src: url('../../public/fonts/Dion.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -12,8 +12,8 @@
 
 @layer base {
   :root {
-    --background: 134 64% 40%; /* #24a936 converted to HSL */
-    --foreground: 0 0% 100%;   /* White text */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -256,4 +256,12 @@ html {
 
 .logo-container:hover {
   transform: scale(1.05);
+}
+
+.font-dion {
+  font-family: var(--font-dion), 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+}
+
+.font-poppins {
+  font-family: var(--font-poppins), system-ui, sans-serif;
 }

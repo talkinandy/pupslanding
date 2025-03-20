@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Outfit, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
+import localFont from 'next/font/local';
 import "./globals.css";
-import { cn } from "@/lib/utils";
-import ClientBody from "./ClientBody";
 import { Toaster } from "sonner";
-
-const spaceGrotesk = Space_Grotesk({ 
-  subsets: ["latin"],
-  variable: '--font-space-grotesk',
-});
-
-const outfit = Outfit({ 
-  subsets: ["latin"],
-  variable: '--font-outfit',
-});
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-poppins",
+  display: 'swap',
+});
+
+const dion = localFont({
+  src: [
+    {
+      path: '../../public/fonts/Dion.otf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-dion',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -70,11 +72,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${poppins.variable}`}>
+    <html lang="en" className={`${poppins.variable} ${dion.variable}`}>
       <head>
         <link rel="icon" href="/favicon/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
@@ -92,20 +94,13 @@ export default function RootLayout({
         <meta name="telegram:title" content="PUPS Bot - Advanced Runes Trading Bot" />
         <meta name="telegram:description" content="The first advanced Runes Telegram trading bot for Odin!" />
         <meta name="theme-color" content="#25ad59" />
-        <link
-          rel="stylesheet"
-          href="https://web-assets.same.dev/629347999/863155112.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />
+        <link rel="preload" href="/fonts/Dion.otf" as="font" type="font/otf" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Dion.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Dion.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Dion.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
       </head>
-      <body className={cn(
-        "min-h-screen antialiased",
-        spaceGrotesk.variable,
-        outfit.variable,
-      )}>
-        <ClientBody>{children}</ClientBody>
+      <body>
+        {children}
         <Toaster position="top-center" />
       </body>
     </html>
