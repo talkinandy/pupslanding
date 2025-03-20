@@ -35,7 +35,7 @@ export const EXTERNAL_LINKS = {
   ORDKIT: "https://pups.ordkit.xyz/",
   RUNEMINE: "https://pups.runemine.com/",
   BRIDGE: "https://app.runemine.com/bridge",
-  TELEGRAM_BOT: "https://t.me/pupsodinbot?text=invite"
+  TELEGRAM_BOT: "https://t.me/pupsodinbot?text=Invitation code:"
 }
 
 export const FEATURES = [

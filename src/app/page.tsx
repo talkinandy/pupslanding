@@ -268,10 +268,17 @@ export default function Home() {
   const [inviteCode, setInviteCode] = useState("");
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
+  const [isFormFloating, setIsFormFloating] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollIndicator(window.scrollY <= 100);
+      // Check if we should show floating form
+      const heroSection = document.getElementById('hero-section');
+      if (heroSection) {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        setIsFormFloating(window.scrollY > heroBottom - 500); // Start transition before reaching bottom
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -296,7 +303,7 @@ export default function Home() {
       />
       
       {/* Hero Section */}
-      <section className="relative min-h-[600px] md:min-h-[700px] 2xl:min-h-[900px] pt-10 pb-16 2xl:pt-20 2xl:pb-32 bg-[#0574f9] overflow-hidden">
+      <section id="hero-section" className="relative min-h-[600px] md:min-h-[700px] 2xl:min-h-[900px] pt-10 pb-16 2xl:pt-20 2xl:pb-32 bg-[#0574f9] overflow-hidden">
         {/* Decorative Clouds */}
         <motion.div
           variants={containerVariants}
@@ -397,7 +404,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Right Column */}
+          {/* Right Column with Form */}
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -411,8 +418,10 @@ export default function Home() {
               The first advanced Runes Telegram trading bot for Odin!
             </p>
 
-            {/* Desktop Form */}
-            <div className="hidden md:flex flex-col items-center md:items-start gap-4 md:gap-6 2xl:gap-8">
+            {/* Desktop Form - In Hero */}
+            <div className={`hidden md:flex flex-col items-start gap-4 md:gap-6 2xl:gap-8 transition-all duration-500 ${
+              isFormFloating ? 'opacity-0' : 'opacity-100'
+            }`}>
               <div className="w-full max-w-md 2xl:max-w-2xl relative">
                 <input
                   type="text"
@@ -456,11 +465,34 @@ export default function Home() {
         <ScrollIndicator show={showScrollIndicator} />
       </section>
       
-      <MobileForm 
-        inviteCode={inviteCode}
-        setInviteCode={setInviteCode}
-        onSubmit={handleJoinWhitelist}
-      />
+      {/* Desktop Form - Floating */}
+      <div className={`hidden md:flex flex-col items-end fixed right-8 top-32 z-50 transition-all duration-500 ${
+        isFormFloating ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[200%]'
+      }`}>
+        <div className="w-[400px] 2xl:w-[500px] bg-[#0574f9] p-6 rounded-3xl border-4 border-white/20 shadow-2xl">
+          <div className="flex flex-col gap-4">
+            <input
+              type="text"
+              value={inviteCode}
+              onChange={(e) => setInviteCode(e.target.value)}
+              placeholder="Enter your invite code"
+              className="w-full px-6 py-4 2xl:px-8 2xl:py-6 rounded-full bg-white/80 text-black placeholder-black/50 box-shadow-[0_0_10px_rgba(0,0,0,0.1)] border-[1.5px] border-[#222] focus:outline-none focus:border-[#222]/80 transition-all 2xl:text-2xl font-poppins transform hover:-translate-y-1"
+              style={{
+                boxShadow: "0 8px 0 rgba(255,255,255,0.1)",
+              }}
+            />
+            <Button 
+              onClick={handleJoinWhitelist}
+              className="w-full bg-[#da57c7] hover:bg-[#c44eb3] text-white px-6 py-6 2xl:px-8 2xl:py-8 rounded-full text-lg 2xl:text-2xl font-poppins font-semibold border-[1.5px] border-[#222] hover:border-[#222]/80 transform hover:-translate-y-1 transition-all duration-300 btn-pulse"
+              style={{
+                boxShadow: "0 8px 0 rgba(0,0,0,0.1), 0 0 0 2px rgba(0,0,0,0.1)",
+              }}
+            >
+              Join Whitelist
+            </Button>
+          </div>
+        </div>
+      </div>
       
       {/* Features Section */}
       <section id="features" className="relative bg-primary py-20 2xl:py-32 overflow-hidden">
@@ -528,6 +560,13 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Mobile Form */}
+      <MobileForm 
+        inviteCode={inviteCode}
+        setInviteCode={setInviteCode}
+        onSubmit={handleJoinWhitelist}
+      />
     </main>
   );
 }
