@@ -447,7 +447,7 @@ export default function Home() {
               src="/images/floating-character.svg"
               alt="Floating Character"
               fill
-              className="object-contain object-bottom animate-float opacity-90"
+              className="object-contain object-bottom animate-float"
               priority
             />
           </div>
