@@ -419,7 +419,7 @@ export default function Home() {
                   value={inviteCode}
                   onChange={(e) => setInviteCode(e.target.value)}
                   placeholder="Enter your invite code"
-                  className="w-full px-6 py-4 2xl:px-8 2xl:py-6 rounded-2xl bg-white/80 placeholder-black box-shadow-[0_0_10px_rgba(0,0,0,0.1)] border-[1.5px] border-[#222] text-white placeholder-white/50 focus:outline-none focus:border-[#222]/80 transition-all 2xl:text-2xl font-poppins transform hover:-translate-y-1"
+                  className="w-full px-6 py-4 2xl:px-8 2xl:py-6 rounded-full bg-white/80 placeholder-black box-shadow-[0_0_10px_rgba(0,0,0,0.1)] border-[1.5px] border-[#222] text-white placeholder-white/50 focus:outline-none focus:border-[#222]/80 transition-all 2xl:text-2xl font-poppins transform hover:-translate-y-1"
                   style={{
                     boxShadow: "0 8px 0 rgba(255,255,255,0.1)",
                   }}
@@ -428,9 +428,9 @@ export default function Home() {
               <div className="w-full max-w-md 2xl:max-w-2xl relative">
                 <Button 
                   onClick={handleJoinWhitelist}
-                  className="w-full bg-[#da57c7] hover:bg-[#c44eb3] text-white px-6 py-6 2xl:px-8 2xl:py-8 rounded-2xl text-lg 2xl:text-2xl font-poppins font-semibold border-[1.5px] border-[#222] hover:border-[#222]/80 transform hover:-translate-y-1 transition-all duration-300 btn-pulse"
+                  className="w-full bg-[#da57c7] hover:bg-[#c44eb3] text-white px-6 py-6 2xl:px-8 2xl:py-8 rounded-full text-lg 2xl:text-2xl font-poppins font-semibold border-[1.5px] border-[#222] hover:border-[#222]/80 transform hover:-translate-y-1 transition-all duration-300 btn-pulse"
                   style={{
-                    boxShadow: "0 8px 0 rgba(255,255,255,0.1)",
+                    boxShadow: "0 8px 0 rgba(0,0,0,0.1), 0 0 0 2px rgba(0,0,0,0.1)",
                   }}
                 >
                   Join Whitelist
