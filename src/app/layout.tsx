@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Outfit } from "next/font/google";
+import { Space_Grotesk, Outfit, Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import ClientBody from "./ClientBody";
+import { Toaster } from "sonner";
 
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ["latin"],
@@ -12,6 +13,12 @@ const spaceGrotesk = Space_Grotesk({
 const outfit = Outfit({ 
   subsets: ["latin"],
   variable: '--font-outfit',
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -67,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${poppins.variable}`}>
       <head>
         <link rel="icon" href="/favicon/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
@@ -99,6 +106,7 @@ export default function RootLayout({
         outfit.variable,
       )}>
         <ClientBody>{children}</ClientBody>
+        <Toaster position="top-center" />
       </body>
     </html>
   );
