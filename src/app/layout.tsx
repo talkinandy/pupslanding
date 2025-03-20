@@ -95,9 +95,6 @@ export default function RootLayout({
         <meta name="telegram:description" content="The first advanced Runes Telegram trading bot for Odin!" />
         <meta name="theme-color" content="#25ad59" />
         <link rel="preload" href="/fonts/Dion.otf" as="font" type="font/otf" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Dion.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Dion.woff" as="font" type="font/woff" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Dion.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
       </head>
       <body>
         {children}
