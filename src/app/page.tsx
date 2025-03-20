@@ -195,7 +195,7 @@ const MobileForm = ({ inviteCode, setInviteCode, onSubmit }: {
           value={inviteCode}
           onChange={(e) => setInviteCode(e.target.value)}
           placeholder="Enter your invite code"
-          className="w-full px-4 py-3 rounded-full bg-white/80 placeholder-black box-shadow-[0_0_10px_rgba(0,0,0,0.1)] border-[1.5px] border-[#222] text-white placeholder-white/50 focus:outline-none focus:border-[#222]/80 transition-all font-poppins transform hover:-translate-y-1"
+          className="w-full px-4 py-3 rounded-full bg-white/80 text-black placeholder-black/50 box-shadow-[0_0_10px_rgba(0,0,0,0.1)] border-[1.5px] border-[#222] focus:outline-none focus:border-[#222]/80 transition-all font-poppins transform hover:-translate-y-1"
           style={{
             boxShadow: "0 6px 0 rgba(255,255,255,0.1)",
           }}
@@ -419,7 +419,7 @@ export default function Home() {
                   value={inviteCode}
                   onChange={(e) => setInviteCode(e.target.value)}
                   placeholder="Enter your invite code"
-                  className="w-full px-6 py-4 2xl:px-8 2xl:py-6 rounded-full bg-white/80 placeholder-black box-shadow-[0_0_10px_rgba(0,0,0,0.1)] border-[1.5px] border-[#222] text-white placeholder-white/50 focus:outline-none focus:border-[#222]/80 transition-all 2xl:text-2xl font-poppins transform hover:-translate-y-1"
+                  className="w-full px-6 py-4 2xl:px-8 2xl:py-6 rounded-full bg-white/80 text-black placeholder-black/50 box-shadow-[0_0_10px_rgba(0,0,0,0.1)] border-[1.5px] border-[#222] focus:outline-none focus:border-[#222]/80 transition-all 2xl:text-2xl font-poppins transform hover:-translate-y-1"
                   style={{
                     boxShadow: "0 8px 0 rgba(255,255,255,0.1)",
                   }}
