@@ -107,16 +107,16 @@ const HeroSection = () => {
       {/* Green hill at the bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-20 md:h-32 bg-primary rounded-t-[50%]"></div>
 
-      <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between">
         {/* Left side: Pups Character */}
         <motion.div
-          className="w-full md:w-1/2 flex justify-center md:justify-start mb-10 md:mb-0"
+          className="w-full md:w-1/2 flex justify-center md:justify-start mb-8 md:mb-0"
           initial={{ opacity: 0, x: -100 }}
           animate={isMounted ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="relative"
+            className="relative w-[280px] sm:w-[320px] md:w-[350px]"
             animate={{
               rotate: [0, 5, 0, -5, 0],
             }}
@@ -132,6 +132,7 @@ const HeroSection = () => {
               alt="PUPS Character"
               width={350}
               height={350}
+              className="w-full h-auto"
               priority
             />
           </motion.div>
@@ -139,13 +140,13 @@ const HeroSection = () => {
 
         {/* Right side: Text and CTA */}
         <motion.div
-          className="w-full md:w-1/2 text-center md:text-left"
+          className="w-full md:w-1/2 text-center md:text-left px-4 sm:px-0"
           initial={{ opacity: 0, x: 100 }}
           animate={isMounted ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <motion.h1
-            className="text-6xl md:text-7xl font-dion mb-2 text-white"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-dion mb-2 text-white"
             initial={{ y: 20 }}
             animate={isMounted ? { y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.5 }}
@@ -153,7 +154,7 @@ const HeroSection = () => {
             pups bot
           </motion.h1>
           <motion.p
-            className="text-xl md:text-2xl mb-8 text-white font-poppins"
+            className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-white font-poppins"
             initial={{ opacity: 0 }}
             animate={isMounted ? { opacity: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.7 }}
@@ -162,7 +163,7 @@ const HeroSection = () => {
           </motion.p>
 
           <motion.div
-            className="flex flex-col items-center md:items-start gap-4"
+            className="flex flex-col items-center md:items-start gap-3 md:gap-4 max-w-[320px] sm:max-w-[400px] mx-auto md:mx-0"
             initial={{ opacity: 0, y: 20 }}
             animate={isMounted ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.9 }}
@@ -172,12 +173,12 @@ const HeroSection = () => {
               value={inviteCode}
               onChange={(e) => setInviteCode(e.target.value)}
               placeholder="Enter your invite code"
-              className="w-full max-w-md px-6 py-4 rounded-full bg-white/10 border-2 border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-all"
+              className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-full bg-white/10 border-2 border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-all text-base sm:text-lg"
             />
-            <motion.div variants={buttonHoverVariants} whileHover="hover" whileTap={{ scale: 0.95 }} className="w-full max-w-md">
+            <motion.div variants={buttonHoverVariants} whileHover="hover" whileTap={{ scale: 0.95 }} className="w-full">
               <Button 
                 onClick={handleJoinWhitelist}
-                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-6 rounded-full text-lg font-semibold"
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold"
               >
                 Join Whitelist
               </Button>

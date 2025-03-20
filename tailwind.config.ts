@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        '3xl': '2000px',
+      },
       fontFamily: {
         dion: ["Dion", "sans-serif"],
         poppins: ["var(--font-poppins)", "sans-serif"],
@@ -50,7 +53,7 @@ export default {
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         pups: {
-          'green': '#24ab3b',
+          'green': '#24a936',
           'blue': '#0574f9',
           'orange': '#ff7f00',
           'purple': '#a855f7',

@@ -31,10 +31,10 @@ const FeaturesSection = () => {
   };
 
   return (
-    <section id="features" className="relative bg-primary py-20 overflow-hidden" ref={sectionRef}>
-      <div className="container mx-auto px-4">
+    <section id="features" className="relative bg-primary py-12 sm:py-16 md:py-20 overflow-hidden" ref={sectionRef}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
-          className="text-5xl md:text-6xl font-dion text-white mb-16 text-center"
+          className="text-4xl sm:text-5xl md:text-6xl font-dion text-white mb-8 sm:mb-12 md:mb-16 text-center"
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
@@ -43,7 +43,7 @@ const FeaturesSection = () => {
         </motion.h2>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -51,12 +51,12 @@ const FeaturesSection = () => {
           {FEATURES.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/10 transition-all duration-300"
+              className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 sm:p-5 md:p-6 hover:bg-white/10 transition-all duration-300"
               variants={featureVariants}
               whileHover={{ scale: 1.02, y: -5 }}
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 mb-4 relative">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-3 sm:mb-4 relative">
                   <Image
                     src={feature.icon}
                     alt={feature.title}
@@ -64,10 +64,10 @@ const FeaturesSection = () => {
                     className="object-contain"
                   />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2 font-poppins">
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 font-poppins">
                   {feature.title}
                 </h3>
-                <p className="text-white/80 font-poppins">
+                <p className="text-sm sm:text-base text-white/80 font-poppins">
                   {feature.description}
                 </p>
               </div>
