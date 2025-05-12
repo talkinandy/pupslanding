@@ -93,6 +93,14 @@ const Header = ({ onMenuClick }: { onMenuClick: () => void }) => (
       >
         Features
       </Link>
+      <Link
+        href="https://pupsbot.gitbook.io/docs/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-white hover:text-gray-200 transition nav-link font-poppins"
+      >
+        Docs
+      </Link>
     </nav>
   </header>
 );
@@ -149,7 +157,15 @@ const SidePanel = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
           >
             Features
           </Link>
-        
+          <Link
+            href="https://pupsbot.gitbook.io/docs/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-xl text-white hover:text-gray-200 transition nav-link font-poppins p-4 rounded-xl hover:bg-white/10 border-2 border-white/20"
+            onClick={onClose}
+          >
+            Docs
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -444,6 +460,16 @@ export default function Home() {
                 >
                   Join Whitelist
                 </Button>
+                <div className="w-full flex justify-center mt-3">
+                  <Link
+                    href="https://pupsbot.gitbook.io/docs/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-white/80 transition text-center font-poppins text-lg underline decoration-dotted"
+                  >
+                    Read Documentation
+                  </Link>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -490,6 +516,16 @@ export default function Home() {
             >
               Join Whitelist
             </Button>
+            <div className="w-full flex justify-center mt-3">
+              <Link
+                href="https://pupsbot.gitbook.io/docs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-white/80 transition text-center font-poppins text-lg underline decoration-dotted"
+              >
+                Read Documentation
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -544,6 +580,16 @@ export default function Home() {
       <footer className="bg-primary py-8 pb-36 md:py-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center gap-4 md:gap-6">
+            <div className="flex items-center gap-6 mb-4">
+              <Link
+                href="https://pupsbot.gitbook.io/docs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-white/80 transition nav-link font-poppins border-2 border-white/30 rounded-xl px-4 py-2 hover:bg-white/10"
+              >
+                Read Documentation
+              </Link>
+            </div>
             <div className="flex items-center gap-2">
               <span className="text-white/70 text-sm md:text-base">Powered by</span>
               <Image 
