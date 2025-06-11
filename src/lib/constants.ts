@@ -35,7 +35,7 @@ export const EXTERNAL_LINKS = {
   ORDKIT: "https://pups.ordkit.xyz/",
   RUNEMINE: "https://pups.runemine.com/",
   BRIDGE: "https://app.runemine.com/bridge",
-  TELEGRAM_BOT: "https://t.me/pupsodinbot?text=invitation code :"
+  TELEGRAM_BOT: "https://t.me/pupsodinbot?start="
 }
 
 export const FEATURES = [
@@ -69,4 +69,4 @@ export const FEATURES = [
     description: "Scan Runes data from Odin directly from your trenches' Telegram group",
     icon: IMAGES.FEATURE_COPY
   }
-] 
+]

@@ -306,8 +306,7 @@ export default function Home() {
       toast.error("Please enter your invite code");
       return;
     }
-    const encodedInviteCode = encodeURIComponent(` ${inviteCode.trim()}`);
-    window.open(`${EXTERNAL_LINKS.TELEGRAM_BOT}${encodedInviteCode}`, "_blank");
+    window.open(`${EXTERNAL_LINKS.TELEGRAM_BOT}${inviteCode.trim()}`, "_blank");
   };
 
   return (
