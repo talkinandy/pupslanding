@@ -225,7 +225,7 @@ const MobileForm = ({ inviteCode, setInviteCode, onSubmit }: {
             boxShadow: "0 6px 0 rgba(0,0,0,0.1), 0 0 0 2px rgba(0,0,0,0.1)",
           }}
         >
-          Join Whitelist
+          Launch App
         </Button>
       </div>
     </div>
@@ -306,8 +306,7 @@ export default function Home() {
       toast.error("Please enter your invite code");
       return;
     }
-    const encodedInviteCode = encodeURIComponent(` ${inviteCode.trim()}`);
-    window.open(`${EXTERNAL_LINKS.TELEGRAM_BOT}${encodedInviteCode}`, "_blank");
+    window.open(`${EXTERNAL_LINKS.TELEGRAM_BOT}${inviteCode.trim()}`, "_blank");
   };
 
   return (
@@ -458,7 +457,7 @@ export default function Home() {
                     boxShadow: "0 8px 0 rgba(0,0,0,0.1), 0 0 0 2px rgba(0,0,0,0.1)",
                   }}
                 >
-                  Join Whitelist
+                  Launch App
                 </Button>
                 <div className="w-full flex justify-center mt-3">
                   <Link
@@ -514,7 +513,7 @@ export default function Home() {
                 boxShadow: "0 8px 0 rgba(0,0,0,0.1), 0 0 0 2px rgba(0,0,0,0.1)",
               }}
             >
-              Join Whitelist
+              Launch App
             </Button>
             <div className="w-full flex justify-center mt-3">
               <Link
