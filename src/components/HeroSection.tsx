@@ -180,7 +180,7 @@ const HeroSection = () => {
                 onClick={handleJoinWhitelist}
                 className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold"
               >
-                Join Whitelist
+                Launch App
               </Button>
             </motion.div>
           </motion.div>
