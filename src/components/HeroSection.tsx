@@ -52,11 +52,12 @@ const HeroSection = () => {
   };
 
   const handleJoinWhitelist = () => {
-    if (!inviteCode.trim()) {
-      alert("Please enter your invite code");
-      return;
+    const trimmedCode = inviteCode.trim();
+    if (trimmedCode) {
+      window.open(`${EXTERNAL_LINKS.TELEGRAM_BOT}${trimmedCode}`, "_blank");
+    } else {
+      window.open("https://t.me/pupsodinbot", "_blank");
     }
-    window.open(`${EXTERNAL_LINKS.TELEGRAM_BOT}${inviteCode.trim()}`, "_blank");
   };
 
   return (
@@ -172,7 +173,7 @@ const HeroSection = () => {
               type="text"
               value={inviteCode}
               onChange={(e) => setInviteCode(e.target.value)}
-              placeholder="Enter your invite code"
+              placeholder="Enter your invite code (optional)"
               className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-full bg-white/10 border-2 border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-all text-base sm:text-lg"
             />
             <motion.div variants={buttonHoverVariants} whileHover="hover" whileTap={{ scale: 0.95 }} className="w-full">
