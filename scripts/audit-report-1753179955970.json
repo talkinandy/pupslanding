@@ -1,0 +1,42 @@
+{
+  "errors": [
+    {
+      "page": "Home",
+      "url": "http://localhost:3000/",
+      "type": "Navigation Error",
+      "message": "page.waitForTimeout is not a function"
+    },
+    {
+      "page": "Documentation",
+      "url": "http://localhost:3000/docs",
+      "type": "Navigation Error",
+      "message": "page.waitForTimeout is not a function"
+    }
+  ],
+  "warnings": [],
+  "networkFailures": [
+    {
+      "page": "Home",
+      "url": "http://localhost:3000/",
+      "failedUrl": "https://region1.google-analytics.com/g/collect?v=2&tid=G-RKL5ZMJXW2&gtm=45je57i1v9225501231za200zd9225501231&_p=1753179954475&gcd=13l3l3l2l1l1&npa=1&dma_cps=syphamo&dma=1&tag_exp=101509157~103116026~103200004~103233427~104684208~104684211~104921715~104921717~104952209~104952211&cid=1581637.1753179955&ul=en-us&sr=800x600&uaa=arm&uab=64&uafvl=Not)A%253BBrand%3B8.0.0.0%7CChromium%3B138.0.7204.157&uamb=0&uam=&uap=macOS&uapv=15.5.0&uaw=0&are=1&frm=0&pscdl=&_s=1&sid=1753179954&sct=1&seg=0&dl=http%3A%2F%2Flocalhost%2F&dt=PUPS%20Bot%20-%20Advanced%20Runes%20Trading%20Bot&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=285",
+      "method": "POST",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "page": "Documentation",
+      "url": "http://localhost:3000/docs",
+      "failedUrl": "https://region1.google-analytics.com/g/collect?v=2&tid=G-RKL5ZMJXW2&gtm=45je57i1v9225501231za200zd9225501231&_p=1753179955344&gcd=13l3l3l2l1l1&npa=1&dma_cps=syphamo&dma=1&tag_exp=101509157~103116026~103200004~103233427~104684208~104684211~104921715~104921717~104952209~104952211&cid=1581637.1753179955&ul=en-us&sr=800x600&uaa=arm&uab=64&uafvl=Not)A%253BBrand%3B8.0.0.0%7CChromium%3B138.0.7204.157&uamb=0&uam=&uap=macOS&uapv=15.5.0&uaw=0&are=1&frm=0&pscdl=&_eu=AAAAAAQ&_s=1&sid=1753179954&sct=1&seg=1&dl=http%3A%2F%2Flocalhost%2Fdocs&dt=PUPS%20Bot%20-%20Advanced%20Runes%20Trading%20Bot&en=page_view&_ee=1&tfd=170",
+      "method": "POST",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    }
+  ],
+  "brokenLinks": [],
+  "missingAssets": [],
+  "performanceMetrics": {},
+  "accessibilityIssues": [],
+  "timestamp": "2025-07-22T10:25:53.048Z"
+}

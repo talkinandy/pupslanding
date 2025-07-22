@@ -1,0 +1,119 @@
+{
+  "errors": [],
+  "warnings": [],
+  "networkFailures": [
+    {
+      "page": "Home",
+      "url": "http://localhost:3000/",
+      "failedUrl": "https://region1.google-analytics.com/g/collect?v=2&tid=G-RKL5ZMJXW2&gtm=45je57i1v9225501231za200zd9225501231&_p=1753179967065&gcd=13l3l3l2l1l1&npa=1&dma_cps=syphamo&dma=1&tag_exp=101509157~103116026~103200004~103233427~104684208~104684211~104921715~104921717~104952209~104952211&cid=2051887904.1753179967&ul=en-us&sr=800x600&uaa=arm&uab=64&uafvl=Not)A%253BBrand%3B8.0.0.0%7CChromium%3B138.0.7204.157&uamb=0&uam=&uap=macOS&uapv=15.5.0&uaw=0&are=1&frm=0&pscdl=&_s=1&sid=1753179967&sct=1&seg=0&dl=http%3A%2F%2Flocalhost%2F&dt=PUPS%20Bot%20-%20Advanced%20Runes%20Trading%20Bot&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=215",
+      "method": "POST",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "page": "Documentation",
+      "url": "http://localhost:3000/docs",
+      "failedUrl": "https://region1.google-analytics.com/g/collect?v=2&tid=G-RKL5ZMJXW2&gtm=45je57i1v9225501231za200zd9225501231&_p=1753179969933&gcd=13l3l3l2l1l1&npa=1&dma_cps=syphamo&dma=1&tag_exp=101509157~103116026~103200004~103233427~104684208~104684211~104921715~104921717~104952209~104952211&cid=2051887904.1753179967&ul=en-us&sr=800x600&uaa=arm&uab=64&uafvl=Not)A%253BBrand%3B8.0.0.0%7CChromium%3B138.0.7204.157&uamb=0&uam=&uap=macOS&uapv=15.5.0&uaw=0&are=1&frm=0&pscdl=&_eu=AAAAAAQ&_s=1&sid=1753179967&sct=1&seg=1&dl=http%3A%2F%2Flocalhost%2Fdocs&dt=PUPS%20Bot%20-%20Advanced%20Runes%20Trading%20Bot&en=page_view&_ee=1&tfd=171",
+      "method": "POST",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    }
+  ],
+  "brokenLinks": [],
+  "missingAssets": [],
+  "performanceMetrics": {
+    "Home": {
+      "url": "http://localhost:3000/",
+      "metrics": {
+        "Timestamp": 246796.619653,
+        "Documents": 2,
+        "Frames": 2,
+        "JSEventListeners": 509,
+        "Nodes": 717,
+        "LayoutCount": 11,
+        "RecalcStyleCount": 332,
+        "LayoutDuration": 0.011097,
+        "RecalcStyleDuration": 0.020279,
+        "ScriptDuration": 0.079459,
+        "TaskDuration": 0.210587,
+        "JSHeapUsedSize": 9691948,
+        "JSHeapTotalSize": 19660800
+      },
+      "timing": {
+        "connectStart": 1753179966902,
+        "secureConnectionStart": 0,
+        "unloadEventEnd": 0,
+        "domainLookupStart": 1753179966902,
+        "domainLookupEnd": 1753179966902,
+        "responseStart": 1753179966945,
+        "connectEnd": 1753179966902,
+        "responseEnd": 1753179966962,
+        "requestStart": 1753179966902,
+        "domLoading": 1753179966947,
+        "redirectStart": 0,
+        "loadEventEnd": 1753179967042,
+        "domComplete": 1753179967042,
+        "navigationStart": 1753179966901,
+        "loadEventStart": 1753179967042,
+        "domContentLoadedEventEnd": 1753179966962,
+        "unloadEventStart": 0,
+        "redirectEnd": 0,
+        "domInteractive": 1753179966962,
+        "fetchStart": 1753179966902,
+        "domContentLoadedEventStart": 1753179966962
+      }
+    },
+    "Documentation": {
+      "url": "http://localhost:3000/docs",
+      "metrics": {
+        "Timestamp": 246799.44142,
+        "Documents": 3,
+        "Frames": 1,
+        "JSEventListeners": 500,
+        "Nodes": 516,
+        "LayoutCount": 10,
+        "RecalcStyleCount": 101,
+        "LayoutDuration": 0.015018,
+        "RecalcStyleDuration": 0.008969,
+        "ScriptDuration": 0.0712,
+        "TaskDuration": 0.15413,
+        "JSHeapUsedSize": 13405376,
+        "JSHeapTotalSize": 19922944
+      },
+      "timing": {
+        "connectStart": 1753179969813,
+        "secureConnectionStart": 0,
+        "unloadEventEnd": 0,
+        "domainLookupStart": 1753179969813,
+        "domainLookupEnd": 1753179969813,
+        "responseStart": 1753179969843,
+        "connectEnd": 1753179969813,
+        "responseEnd": 1753179969866,
+        "requestStart": 1753179969813,
+        "domLoading": 1753179969845,
+        "redirectStart": 0,
+        "loadEventEnd": 1753179969922,
+        "domComplete": 1753179969922,
+        "navigationStart": 1753179969812,
+        "loadEventStart": 1753179969922,
+        "domContentLoadedEventEnd": 1753179969873,
+        "unloadEventStart": 0,
+        "redirectEnd": 0,
+        "domInteractive": 1753179969873,
+        "fetchStart": 1753179969813,
+        "domContentLoadedEventStart": 1753179969873
+      }
+    }
+  },
+  "accessibilityIssues": [
+    {
+      "page": "Documentation",
+      "url": "http://localhost:3000/docs",
+      "type": "Buttons without accessible text",
+      "count": 1
+    }
+  ],
+  "timestamp": "2025-07-22T10:26:06.429Z"
+}

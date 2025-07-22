@@ -94,9 +94,7 @@ const Header = ({ onMenuClick }: { onMenuClick: () => void }) => (
         Features
       </Link>
       <Link
-        href="https://pupsbot.gitbook.io/docs/"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/docs"
         className="text-white hover:text-gray-200 transition nav-link font-poppins"
       >
         Docs
@@ -158,7 +156,7 @@ const SidePanel = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }
             Features
           </Link>
           <Link
-            href="https://pupsbot.gitbook.io/docs/"
+            href="/docs"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-xl text-white hover:text-gray-200 transition nav-link font-poppins p-4 rounded-xl hover:bg-white/10 border-2 border-white/20"
@@ -462,7 +460,7 @@ export default function Home() {
                 </Button>
                 <div className="w-full flex justify-center mt-3">
                   <Link
-                    href="https://pupsbot.gitbook.io/docs/"
+                    href="/docs"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white hover:text-white/80 transition text-center font-poppins text-lg underline decoration-dotted"
@@ -518,7 +516,7 @@ export default function Home() {
             </Button>
             <div className="w-full flex justify-center mt-3">
               <Link
-                href="https://pupsbot.gitbook.io/docs/"
+                href="/docs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-white/80 transition text-center font-poppins text-lg underline decoration-dotted"
@@ -582,7 +580,7 @@ export default function Home() {
           <div className="flex flex-col items-center gap-4 md:gap-6">
             <div className="flex items-center gap-6 mb-4">
               <Link
-                href="https://pupsbot.gitbook.io/docs/"
+                href="/docs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-white/80 transition nav-link font-poppins border-2 border-white/30 rounded-xl px-4 py-2 hover:bg-white/10"
