@@ -1,0 +1,536 @@
+{
+  "pages": [
+    {
+      "title": "ODIN•FUN - Lightning fast Bitcoin pump fun and AMM",
+      "url": "https://odin.fun/",
+      "sections": [
+        {
+          "index": 0,
+          "className": "filter-sections",
+          "textContent": "SearchSort ByMarket Cap: AscendedAscendedNot AscendedEtchedEtchedNot EtchedLaunched OnBitcoinOdinVerifiedVerifiedNot VerifiedFeaturedFeaturedNot FeaturedMarket CaptoVolumetoPricetoHolderstoSocial Medi",
+          "hasChart": true,
+          "hasTable": false
+        },
+        {
+          "index": 1,
+          "className": "mb-[65px] flex flex-grow lg:mb-0 [&>*:first-child]:w-full",
+          "textContent": "FilterLastAscendedKing of the HallTrending5mQuick buy OFFTOKENAGEMKT CAP5M1H6H24HVOLUMETXNSASCENDEDQUICK BUY12345",
+          "hasChart": true,
+          "hasTable": true
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Clear Filters",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-muted dark:bg-odin-tertiary shadow-sm hover:bg-secondary/50 font-bold h-8 rounded-md px-3 text-xs flex-shrink-0 text-primary",
+          "href": null
+        },
+        {
+          "text": "Market Cap:",
+          "className": "flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+          "href": null
+        },
+        {
+          "text": "Ascended",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Not Ascended",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Etched",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Not Etched",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Bitcoin",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Odin",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Verified",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Not Verified",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Featured",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Not Featured",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Has Twitter",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "No Twitter",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Verified",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Not Verified",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Has Telegram",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "No Telegram",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Has Website",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "No Website",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full",
+          "href": null
+        },
+        {
+          "text": "Connect",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-odin text-primary-foreground shadow hover:bg-odin-dark h-9 px-4 py-2 font-bold",
+          "href": null
+        },
+        {
+          "text": "Filter",
+          "className": "items-center justify-center whitespace-nowrap rounded-md transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-muted dark:bg-odin-tertiary shadow-sm hover:bg-secondary/50 flex h-10 min-w-10 touch-manipulation gap-2 p-[9px] text-sm font-bold text-primary",
+          "href": null
+        },
+        {
+          "text": "Last",
+          "className": "items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-sm hover:text-accent-foreground flex h-10 !text-base gap-1 rounded-lg border bg-transparent p-2 text-sm font-bold text-primary hover:bg-white/10 border-trending-orange w-10 md:w-full touch-manipulation",
+          "href": null
+        },
+        {
+          "text": "Ascended",
+          "className": "items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-sm hover:text-accent-foreground flex h-10 !text-base gap-1 rounded-lg border bg-transparent p-2 text-sm font-bold text-primary hover:bg-white/10 border-odin w-10 md:w-full touch-manipulation",
+          "href": null
+        },
+        {
+          "text": "King of the Hall",
+          "className": "items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-sm hover:text-accent-foreground flex h-10 !text-base gap-1 rounded-lg border bg-transparent p-2 text-sm font-bold text-primary hover:bg-white/10 border-odin-yellow w-10 md:w-full touch-manipulation",
+          "href": null
+        },
+        {
+          "text": "Trending",
+          "className": "items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-sm hover:text-accent-foreground flex h-10 !text-base w-auto gap-1 rounded-lg border bg-transparent p-2 text-sm font-bold text-primary hover:bg-white/10 border-red-700 touch-manipulation rounded-br-none rounded-tr-none border-r-0 pr-1",
+          "href": null
+        },
+        {
+          "text": "5m",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground py-2 h-10 rounded-bl-none rounded-tl-none border-l-0 px-1 pl-1 transition-colors duration-100 border-red-700 touch-manipulation",
+          "href": null
+        },
+        {
+          "text": "OFF",
+          "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 text-primary",
+          "href": null
+        },
+        {
+          "text": "AGE",
+          "className": "flex gap-1 text-xs font-bold hover:text-primary/80",
+          "href": null
+        },
+        {
+          "text": "MKT CAP",
+          "className": "flex gap-1 text-xs font-bold text-odin hover:text-odin/80",
+          "href": null
+        },
+        {
+          "text": "5M",
+          "className": "flex gap-1 text-xs font-bold hover:text-primary/80",
+          "href": null
+        },
+        {
+          "text": "1H",
+          "className": "flex gap-1 text-xs font-bold hover:text-primary/80",
+          "href": null
+        },
+        {
+          "text": "6H",
+          "className": "flex gap-1 text-xs font-bold hover:text-primary/80",
+          "href": null
+        },
+        {
+          "text": "24H",
+          "className": "flex gap-1 text-xs font-bold hover:text-primary/80",
+          "href": null
+        },
+        {
+          "text": "VOLUME",
+          "className": "flex gap-1 text-xs font-bold hover:text-primary/80",
+          "href": null
+        },
+        {
+          "text": "TXNS",
+          "className": "flex gap-1 text-xs font-bold hover:text-primary/80",
+          "href": null
+        },
+        {
+          "text": "ASCENDED",
+          "className": "flex gap-1 text-xs font-bold hover:text-primary/80",
+          "href": null
+        }
+      ],
+      "links": [],
+      "dataElements": [
+        {
+          "className": "scroll flex min-h-[50px] items-center justify-between bg-transparent transition-colors duration-100 sticky z-10 lg:static overflow-auto [&::-webkit-scrollbar]:hidden --state-none",
+          "textContent": "FilterLastAscendedKing of the HallTrending5mQuick buy OFF"
+        },
+        {
+          "className": "[&_tr]:border-b transition-color sticky top-[-1px] z-10 bg-background duration-100 lg:static lg:bg-transparent",
+          "textContent": "TOKENAGEMKT CAP5M1H6H24HVOLUMETXNSASCENDEDQUICK BUY"
+        },
+        {
+          "className": "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+          "textContent": "TOKENAGEMKT CAP5M1H6H24HVOLUMETXNSASCENDEDQUICK BUY"
+        },
+        {
+          "className": "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+          "textContent": ""
+        },
+        {
+          "className": "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+          "textContent": ""
+        },
+        {
+          "className": "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+          "textContent": ""
+        },
+        {
+          "className": "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+          "textContent": ""
+        },
+        {
+          "className": "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+          "textContent": ""
+        },
+        {
+          "className": "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+          "textContent": ""
+        },
+        {
+          "className": "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+          "textContent": ""
+        },
+        {
+          "className": "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+          "textContent": ""
+        }
+      ],
+      "charts": [
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        },
+        {
+          "tagName": "svg",
+          "className": {},
+          "id": ""
+        }
+      ],
+      "tables": [
+        {
+          "index": 0,
+          "headers": [
+            "TOKEN",
+            "",
+            "AGE",
+            "MKT CAP",
+            "5M",
+            "1H",
+            "6H",
+            "24H",
+            "VOLUME",
+            "TXNS",
+            "ASCENDED",
+            "QUICK BUY"
+          ],
+          "rowCount": 8
+        }
+      ]
+    }
+  ],
+  "features": [
+    "Button: Clear Filters",
+    "Button: Market Cap:",
+    "Button: Ascended",
+    "Button: Not Ascended",
+    "Button: Etched",
+    "Button: Not Etched",
+    "Button: Bitcoin",
+    "Button: Odin",
+    "Button: Verified",
+    "Button: Not Verified",
+    "Button: Featured",
+    "Button: Not Featured",
+    "Button: Has Twitter",
+    "Button: No Twitter",
+    "Button: Verified",
+    "Button: Not Verified",
+    "Button: Has Telegram",
+    "Button: No Telegram",
+    "Button: Has Website",
+    "Button: No Website",
+    "Button: Connect",
+    "Button: Filter",
+    "Button: Last",
+    "Button: Ascended",
+    "Button: King of the Hall",
+    "Button: Trending",
+    "Button: 5m",
+    "Button: OFF",
+    "Button: AGE",
+    "Button: MKT CAP",
+    "Button: 5M",
+    "Button: 1H",
+    "Button: 6H",
+    "Button: 24H",
+    "Button: VOLUME",
+    "Button: TXNS",
+    "Button: ASCENDED"
+  ],
+  "gaps": [
+    "Advanced Technical Indicators",
+    "Portfolio Analytics",
+    "Cross-Token Comparisons",
+    "Volume Flow Analysis",
+    "Whale Activity Tracking",
+    "Market Sentiment Analysis",
+    "Risk Assessment Tools",
+    "Performance Benchmarking",
+    "Liquidity Analysis",
+    "Token Correlation Matrix",
+    "Historical Performance Trends",
+    "Alert System for Price/Volume",
+    "Custom Dashboard Creation",
+    "Export/Share Analytics"
+  ],
+  "uiElements": [],
+  "dataDisplayed": [],
+  "navigationStructure": [],
+  "screenshots": [
+    "odin-main-page.png"
+  ]
+}

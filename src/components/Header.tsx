@@ -24,12 +24,24 @@ const Header = () => {
 
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center space-x-8">
-            <Link
+        <Link
           href="/#features"
-              className="text-white hover:text-gray-200 transition font-poppins"
-            >
+          className="text-white hover:text-gray-200 transition font-poppins"
+        >
           Features
-            </Link>
+        </Link>
+        <Link
+          href="/dashboard"
+          className="text-white hover:text-gray-200 transition font-poppins"
+        >
+          Dashboard
+        </Link>
+        <Link
+          href="/docs"
+          className="text-white hover:text-gray-200 transition font-poppins"
+        >
+          Docs
+        </Link>
       </nav>
 
       {/* Mobile Menu Button */}
@@ -71,13 +83,27 @@ const Header = () => {
             className="absolute top-16 left-0 right-0 bg-primary shadow-lg md:hidden"
           >
             <nav className="flex flex-col p-4">
-                <Link
+              <Link
                 href="/#features"
                 className="text-white py-2 hover:text-gray-200 transition font-poppins"
-                  onClick={() => setIsMenuOpen(false)}
-                >
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Features
-                </Link>
+              </Link>
+              <Link
+                href="/dashboard"
+                className="text-white py-2 hover:text-gray-200 transition font-poppins"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Dashboard
+              </Link>
+              <Link
+                href="/docs"
+                className="text-white py-2 hover:text-gray-200 transition font-poppins"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Docs
+              </Link>
             </nav>
           </motion.div>
         )}
