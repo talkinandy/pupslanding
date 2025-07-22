@@ -76,7 +76,7 @@ async function fetchTopTraders(limit = 100) {
     
     // Step 1: Get active users by analyzing recent trades
     console.log('   📊 Fetching recent trading activity...');
-    const recentTradesResponse = await fetch(`${ODIN_API_BASE}/trades?limit=10000&sort=desc`, {
+    const recentTradesResponse = await fetch(`${ODIN_API_BASE}/trades?limit=1000`, {
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'PUPS-Dashboard/1.0'
@@ -231,12 +231,9 @@ async function updatePlatformStats(odinStats) {
     const statsRecord = {
       stat_date: new Date().toISOString().split('T')[0], // Today's date
       total_traders: odinStats.total_users,
-      total_volume: millisatsToBTC(odinStats.total_volume_all).toFixed(8),
-      daily_volume: millisatsToBTC(odinStats.total_volume_24h).toFixed(8),
-      total_tokens: odinStats.tokens,
-      bonded_tokens: odinStats.bonded,
+      total_volume: millisatsToBTC(odinStats.total_volume_24h).toFixed(8), // Use daily volume for our schema
       active_traders: Math.floor(odinStats.total_users * 0.1), // Estimate 10% active
-      updated_at: new Date().toISOString()
+      btc_price: 100000 // Placeholder BTC price
     };
 
     const { error } = await supabase
@@ -269,9 +266,7 @@ async function updateLeaderboard(traders) {
     // First, ensure all traders exist in the traders table
     const traderRecords = traders.map(trader => ({
       principal: trader.principal,
-      name: trader.name,
-      last_seen: new Date().toISOString(),
-      total_volume: trader.volume_24h
+      name: trader.name
     }));
 
     console.log(`   Upserting ${traderRecords.length} trader records...`);
@@ -286,24 +281,49 @@ async function updateLeaderboard(traders) {
       throw tradersError;
     }
 
-    // Then create daily snapshots
+    // Get all trader UUIDs for the snapshots
+    const { data: existingTraders, error: fetchError } = await supabase
+      .from('traders')
+      .select('id, principal')
+      .in('principal', traders.map(t => t.principal));
+    
+    if (fetchError) {
+      throw fetchError;
+    }
+    
+    // Create a map of principal to UUID
+    const principalToId = new Map();
+    existingTraders.forEach(trader => {
+      principalToId.set(trader.principal, trader.id);
+    });
+    
+    // Then create daily snapshots with proper trader_id
     const snapshotRecords = traders.map(trader => ({
-      trader_principal: trader.principal,
+      trader_id: principalToId.get(trader.principal),
       snapshot_date: today,
       realized_pnl: trader.realized_pnl,
       unrealized_pnl: trader.unrealized_pnl,
       total_pnl: trader.total_pnl,
-      volume_24h: trader.volume_24h,
       rank: trader.rank
-    }));
+    })).filter(record => record.trader_id); // Only include if we have a valid trader_id
 
-    console.log(`   Upserting ${snapshotRecords.length} snapshot records...`);
+    console.log(`   Inserting ${snapshotRecords.length} snapshot records...`);
+    
+    // First, delete existing snapshots for today to avoid duplicates
+    const { error: deleteError } = await supabase
+      .from('trader_snapshots')
+      .delete()
+      .eq('snapshot_date', today)
+      .in('trader_id', snapshotRecords.map(r => r.trader_id));
+    
+    if (deleteError) {
+      console.error('Warning: Could not delete existing snapshots:', deleteError.message);
+    }
+    
+    // Then insert new snapshots
     const { error: snapshotsError } = await supabase
       .from('trader_snapshots')
-      .upsert(snapshotRecords, { 
-        onConflict: 'trader_principal,snapshot_date',
-        ignoreDuplicates: false 
-      });
+      .insert(snapshotRecords);
 
     if (snapshotsError) {
       throw snapshotsError;
