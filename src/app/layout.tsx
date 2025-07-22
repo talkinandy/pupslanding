@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import localFont from 'next/font/local';
 import "./globals.css";
 import { Toaster } from "sonner";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -97,6 +98,7 @@ export default function RootLayout({
         <link rel="preload" href="/fonts/Dion.otf" as="font" type="font/otf" crossOrigin="anonymous" />
       </head>
       <body>
+        <GoogleAnalytics />
         {children}
         <Toaster position="top-center" />
       </body>

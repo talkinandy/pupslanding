@@ -22,7 +22,9 @@ npm run lint   # Run ESLint
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS + shadcn/ui components
 - **Animations**: Framer Motion
-- **Deployment**: Netlify
+- **State Management**: React hooks (useState, useEffect)
+- **Notifications**: Sonner toast notifications
+- **Deployment**: Netlify with @netlify/plugin-nextjs
 
 ### Project Structure
 ```
@@ -33,18 +35,35 @@ src/
 │   ├── globals.css      # Global styles, custom fonts (Dion)
 │   └── ClientBody.tsx   # Client-side wrapper
 ├── components/
-│   ├── ui/              # shadcn/ui components
-│   └── Header.tsx       # Header component (actively used)
+│   ├── ui/              # shadcn/ui components (New York style)
+│   ├── Header.tsx       # Navigation with mobile menu
+│   ├── Footer.tsx       # Footer with links
+│   └── sections/        # Page sections (Hero, Features, etc.)
 └── lib/
     ├── constants.ts     # Images, links, features data
     └── utils.ts         # Utility functions (cn helper)
+
+public/
+├── fonts/               # Custom fonts (Dion.otf)
+├── images/              # All SVG illustrations and graphics
+└── favicon/             # Favicon files
 ```
+
+### Key Configuration Files
+- **tsconfig.json**: Path alias `@/*` → `./src/*`, strict mode enabled
+- **tailwind.config.ts**: Custom colors, fonts, 3xl breakpoint (2000px)
+- **components.json**: shadcn/ui config (New York style, zinc base)
+- **next.config.ts**: Custom build dir for production, SVG support, image optimization
+- **netlify.toml**: Build command and Next.js plugin configuration
 
 ### Design System
 - **Primary Color**: #0574f9 (PUPS blue)
 - **Success Color**: #24a936 (green)
-- **Font**: Dion (custom) for headings, system font for body
+- **Font Stack**: 
+  - Dion (custom) for headings
+  - Poppins, Outfit, Space Grotesk (Google Fonts)
 - **Components**: New York style shadcn/ui with zinc base
+- **Breakpoints**: Default Tailwind + custom 3xl (2000px)
 
 ## Key Integration Points
 
@@ -83,22 +102,47 @@ src/
 
 ### Adding New Features
 1. Update features array in `lib/constants.ts`
-2. Icons use emoji strings, not components
+2. Features use SVG images from `public/images/features/`
 3. Maintain 3-column grid on desktop, single column on mobile
 
 ### Updating Content
 - Hero text: Search for "Instant Runes Trading" in page.tsx
-- Features: Edit `features` array in constants.ts
-- Links: Update `TELEGRAM_BOT_URL` and `DOCS_URL` in constants.ts
+- Features: Edit `FEATURES` array in `lib/constants.ts`
+- External links: Update in `EXTERNAL_LINKS` object in `lib/constants.ts`
+- Images: Update paths in `IMAGES` object in `lib/constants.ts`
 
 ### Modifying Animations
 - Floating elements use Framer Motion with `whileInView`
 - Clouds have continuous rotation animation
 - Form slides in from right on desktop, bottom on mobile
+- Toast notifications use Sonner library
+
+### Environment-Specific Configuration
+- Development server binds to `0.0.0.0` for network access
+- Production build uses custom directory: `build` instead of `.next`
+- Turbopack enabled for faster development builds
 
 ## Deployment
 
 Built and deployed via Netlify:
 - Build command: `npm run build`
-- Publish directory: `.next`
+- Publish directory: `.next` (Netlify handles the custom build directory)
 - Environment: Production uses Next.js optimizations
+- Plugin: `@netlify/plugin-nextjs` for Next.js support
+- Telemetry disabled via `NEXT_TELEMETRY_DISABLED=1`
+
+## Image Optimization
+
+- SVG support enabled with `dangerouslyAllowSVG: true`
+- Remote patterns configured for:
+  - Unsplash images
+  - GitHub raw content
+  - `*.pupstoken.com` domains
+  - `web-assets.same.dev`
+
+## TypeScript Configuration
+
+- Strict mode enabled for type safety
+- ES2017 target with bundler module resolution
+- Path aliases: `@/*` maps to `./src/*`
+- JSX preserved for Next.js processing
