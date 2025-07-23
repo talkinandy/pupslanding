@@ -215,8 +215,8 @@ function aggregateTraderMetrics(trades) {
  */
 async function buildTimeframeLeaderboard(timeframe, limit = 200) {
   const timeframeConfig = {
-    '24h': { hours: 24, maxTrades: Infinity }, // Remove limit to fetch ALL 24h trades
-    '7d': { hours: 168, maxTrades: Infinity }  // Remove limit to fetch ALL 7d trades
+    '24h': { hours: 24, maxTrades: 50000 }, // Balanced: enough for accuracy, fast enough for GitHub Actions  
+    '7d': { hours: 168, maxTrades: 100000 } // Balanced: comprehensive data, completes within 15min timeout
   };
   
   const config = timeframeConfig[timeframe];
