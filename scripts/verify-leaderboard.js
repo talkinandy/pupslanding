@@ -8,17 +8,21 @@
 
 const { createClient } = require('@supabase/supabase-js');
 
-// Initialize Supabase client
-if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+// Initialize Supabase client - prefer service role key for read access
+const requiredEnvs = ['NEXT_PUBLIC_SUPABASE_URL'];
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !supabaseKey) {
   console.error('❌ Missing Supabase environment variables');
   console.error('   NEXT_PUBLIC_SUPABASE_URL:', !!process.env.NEXT_PUBLIC_SUPABASE_URL);
+  console.error('   SUPABASE_SERVICE_ROLE_KEY:', !!process.env.SUPABASE_SERVICE_ROLE_KEY);
   console.error('   NEXT_PUBLIC_SUPABASE_ANON_KEY:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   process.exit(1);
 }
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  supabaseKey
 );
 
 /**
@@ -31,17 +35,14 @@ async function verifyLeaderboard() {
     const today = new Date().toISOString().split('T')[0];
     
     // Check if today's snapshots exist
-    const { data: snapshots, error: snapshotsError } = await supabase
+    const { count: snapshotCount, error: snapshotsError } = await supabase
       .from('trader_snapshots')
-      .select('count(*)')
-      .eq('snapshot_date', today)
-      .single();
+      .select('*', { count: 'exact', head: true })
+      .eq('snapshot_date', today);
 
     if (snapshotsError) {
       throw snapshotsError;
     }
-
-    const snapshotCount = snapshots.count;
     console.log(`   Found ${snapshotCount} trader snapshots for today`);
     
     if (snapshotCount === 0) {
@@ -60,7 +61,7 @@ async function verifyLeaderboard() {
     }
 
     if (stats) {
-      console.log(`   Platform stats updated: ${stats.total_traders.toLocaleString()} traders, ${stats.daily_volume} BTC volume`);
+      console.log(`   Platform stats updated: ${stats.total_traders.toLocaleString()} traders, ${stats.total_volume} BTC volume`);
     } else {
       console.log('   ⚠️  Platform stats not found (non-critical)');
     }

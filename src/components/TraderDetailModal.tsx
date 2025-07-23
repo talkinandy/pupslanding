@@ -14,6 +14,13 @@ interface TraderPosition {
   current_price: number;
   pnl: number;
   percentage_change: number;
+  price_change_1h: number;
+  price_change_24h: number;
+  realized_pnl: number;
+  unrealized_pnl: number;
+  total_pnl: number;
+  avg_buy_price: number;
+  realized_quantity: number;
 }
 
 interface TraderDetailModalProps {
@@ -40,31 +47,204 @@ export default function TraderDetailModal({ trader, isOpen, onClose }: TraderDet
     setError('');
     
     try {
-      // Fetch live data directly from Odin API
-      const odinPositions = await OdinAPIService.calculateTraderPositions(trader.principal);
+      // Get user balances
+      const balancesResponse = await fetch(`https://api.odin.fun/v1/user/${trader.principal}/balances?limit=20`, {
+        headers: {
+          'Accept': 'application/json',
+          'User-Agent': 'PUPS-Dashboard/1.0'
+        }
+      });
       
-      // Convert to our interface format
-      const convertedPositions: TraderPosition[] = odinPositions.map((pos, index) => ({
-        id: `${pos.token_id}-${index}`,
-        token_name: pos.token_name,
-        amount: parseFloat(pos.amount),
-        entry_price: parseInt(pos.entry_price_millisats) / 100_000_000_000, // Convert millisats to BTC
-        current_price: parseInt(pos.current_price_millisats) / 100_000_000_000, // Convert millisats to BTC
-        pnl: parseInt(pos.pnl_millisats) / 100_000_000_000, // Convert millisats to BTC
-        percentage_change: pos.percentage_change
-      }));
+      if (!balancesResponse.ok) {
+        throw new Error(`API request failed: ${balancesResponse.status}`);
+      }
       
-      setPositions(convertedPositions);
+      const balancesData = await balancesResponse.json();
+      console.log('Balances data:', balancesData);
+      
+      // Filter out zero balances and BTC
+      const tokenBalances = balancesData.data.filter(
+        (balance: { balance: number; id: string }) => balance.balance > 0 && balance.id !== 'btc'
+      );
+      
+      if (tokenBalances.length === 0) {
+        setPositions([]);
+        setError('This trader currently has no token holdings');
+        return;
+      }
+      
+      // Fetch real token prices and P&L data for each held token
+      const positionsPromises = tokenBalances.map(async (balance: { 
+        id: string; 
+        name?: string; 
+        ticker?: string; 
+        balance: number; 
+        divisibility?: number 
+      }) => {
+        // Convert raw balance to actual token amount
+        // Total supply is 21M tokens (2100000000000000000 / 10^11 = 21,000,000)
+        // The divisibility field in API is 8 but actual conversion needs 10^11
+        const actualTokenAmount = balance.balance / Math.pow(10, 11);
+        
+        try {
+          // Fetch token price, realized P&L, and unrealized P&L in parallel
+          const [tokenResponse, realizedResponse, unrealizedResponse] = await Promise.all([
+            fetch(`https://api.odin.fun/v1/token/${balance.id}`, {
+              headers: {
+                'Accept': 'application/json',
+                'User-Agent': 'PUPS-Dashboard/1.0'
+              }
+            }),
+            fetch(`https://api.odin.fun/v1/user/${trader.principal}/token/${balance.id}/realized_pnl`, {
+              headers: {
+                'Accept': 'application/json',
+                'User-Agent': 'PUPS-Dashboard/1.0'
+              }
+            }),
+            fetch(`https://api.odin.fun/v1/user/${trader.principal}/token/${balance.id}/unrealized_pnl`, {
+              headers: {
+                'Accept': 'application/json',
+                'User-Agent': 'PUPS-Dashboard/1.0'
+              }
+            })
+          ]);
+          
+          if (!tokenResponse.ok) {
+            console.warn(`Failed to get price for token ${balance.id}, skipping due to no price data`);
+            return null; // Skip tokens without price data
+          }
+          
+          const tokenData = await tokenResponse.json();
+          console.log(`Token ${balance.id} data:`, tokenData);
+          
+          // Parse P&L data (may fail if user has no trading history)
+          let realizedData = null;
+          let unrealizedData = null;
+          
+          try {
+            if (realizedResponse.ok) {
+              realizedData = await realizedResponse.json();
+            }
+          } catch (e) {
+            console.log(`No realized P&L data for token ${balance.id}`);
+          }
+          
+          try {
+            if (unrealizedResponse.ok) {
+              unrealizedData = await unrealizedResponse.json();
+            }
+          } catch (e) {
+            console.log(`No unrealized P&L data for token ${balance.id}`);
+          }
+          
+          // Convert token price from millisatoshis to BTC
+          const currentPriceBTC = tokenData.price / 100_000_000_000; // Convert millisats to BTC
+          
+          // Calculate historical price changes
+          const price1hBTC = tokenData.price_1h ? tokenData.price_1h / 100_000_000_000 : currentPriceBTC;
+          const price24hBTC = tokenData.price_1d ? tokenData.price_1d / 100_000_000_000 : currentPriceBTC;
+          
+          const priceChange1h = ((currentPriceBTC - price1hBTC) / price1hBTC) * 100;
+          const priceChange24h = ((currentPriceBTC - price24hBTC) / price24hBTC) * 100;
+          
+          // Use real P&L data if available, otherwise skip the token
+          let realizedPnL = 0;
+          let unrealizedPnL = 0;
+          let avgBuyPrice = 0;
+          let realizedQuantity = 0;
+          
+          if (realizedData?.data) {
+            // Use the raw realized_pnl and convert properly
+            const rawRealizedPnL = realizedData.data.realized_pnl || 0;
+            realizedPnL = rawRealizedPnL / 100_000_000_000; // Convert millisats to BTC
+            realizedQuantity = realizedData.data.display_realized_quantity || 0;
+          }
+          
+          if (unrealizedData?.data) {
+            // Calculate manual unrealized P&L to avoid API scaling issues
+            const holdings = unrealizedData.data.display_unrealized_quantity || 0;
+            const avgBuyPriceMillisats = unrealizedData.data.avg_buy_price || 0;
+            avgBuyPrice = avgBuyPriceMillisats / 100_000_000_000; // Convert from millisats to BTC
+            
+            // Manual calculation: (current_price - avg_buy_price) * holdings
+            const currentValueBTC = holdings * currentPriceBTC;
+            const costBasisBTC = holdings * avgBuyPrice;
+            unrealizedPnL = currentValueBTC - costBasisBTC;
+          }
+          
+          // Skip tokens with no P&L data (likely dust or inactive positions)
+          if (realizedPnL === 0 && unrealizedPnL === 0 && avgBuyPrice === 0) {
+            console.log(`Skipping token ${balance.id} - no P&L data available`);
+            return null;
+          }
+          
+          // Filter out dust positions (very low value)
+          const currentValue = actualTokenAmount * currentPriceBTC;
+          const MIN_VALUE_THRESHOLD = 0.00000100; // 100 satoshis minimum
+          
+          if (currentValue < MIN_VALUE_THRESHOLD) {
+            console.log(`Skipping token ${balance.id} - dust value: ${currentValue.toFixed(8)} BTC`);
+            return null;
+          }
+          
+          const totalPnL = realizedPnL + unrealizedPnL;
+          const pnl = totalPnL; // Use real total P&L
+          const percentageChange = avgBuyPrice > 0 ? ((currentPriceBTC - avgBuyPrice) / avgBuyPrice) * 100 : 0;
+          
+          return {
+            id: balance.id,
+            token_name: tokenData.name || tokenData.ticker || balance.id,
+            amount: actualTokenAmount,
+            entry_price: avgBuyPrice,
+            current_price: currentPriceBTC,
+            pnl: pnl,
+            percentage_change: percentageChange,
+            price_change_1h: priceChange1h,
+            price_change_24h: priceChange24h,
+            realized_pnl: realizedPnL,
+            unrealized_pnl: unrealizedPnL,
+            total_pnl: totalPnL,
+            avg_buy_price: avgBuyPrice,
+            realized_quantity: realizedQuantity
+          };
+          
+        } catch (tokenError) {
+          console.error(`Error fetching token ${balance.id}:`, tokenError);
+          // Return null for failed tokens
+          return null;
+        }
+      });
+      
+      // Wait for all token price requests to complete
+      const positionsResults = await Promise.all(positionsPromises);
+      
+      // Filter out failed requests and sort by value (descending)
+      const validPositions = positionsResults
+        .filter((pos): pos is TraderPosition => pos !== null)
+        .sort((a, b) => (b.current_price * b.amount) - (a.current_price * a.amount));
+      
+      setPositions(validPositions);
+      
+      // If no valid positions found after filtering, show appropriate message
+      if (validPositions.length === 0) {
+        if (tokenBalances.length > 0) {
+          setError('This trader has no significant token positions with P&L data');
+        } else {
+          setError('This trader currently has no token holdings');
+        }
+      }
     } catch (err) {
       console.error('Error loading trader details:', err);
-      setError('Failed to fetch live holdings data from Odin API');
+      setError('Failed to fetch trader balance data from Odin API');
     } finally {
       setIsLoading(false);
     }
   };
 
   const totalPortfolioValue = positions.reduce((sum, pos) => sum + (pos.current_price * pos.amount), 0);
-  const totalPnL = positions.reduce((sum, pos) => sum + pos.pnl, 0);
+  const totalPnL = positions.reduce((sum, pos) => sum + pos.total_pnl, 0);
+  const totalRealizedPnL = positions.reduce((sum, pos) => sum + pos.realized_pnl, 0);
+  const totalUnrealizedPnL = positions.reduce((sum, pos) => sum + pos.unrealized_pnl, 0);
 
   const formatBTC = (value: number) => {
     const sign = value >= 0 ? '▲' : '▼';
@@ -78,11 +258,33 @@ export default function TraderDetailModal({ trader, isOpen, onClose }: TraderDet
   };
 
   const formatTokenAmount = (amount: number) => {
-    return amount.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    // With 21M supply, holdings are typically in thousands
+    if (amount >= 1000000) {
+      return `${(amount / 1000000).toFixed(2)}M`;
+    } else if (amount >= 1000) {
+      return `${(amount / 1000).toFixed(2)}K`;
+    } else if (amount >= 1) {
+      return amount.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    } else {
+      return amount.toFixed(4); // For fractional tokens
+    }
   };
 
   const formatPrice = (price: number) => {
     return price.toFixed(8);
+  };
+
+  const formatPriceChange = (change: number, timeframe: string) => {
+    const sign = change >= 0 ? '+' : '';
+    const color = change >= 0 ? 'text-[#24a936]' : 'text-red-500';
+    const icon = change >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />;
+    
+    return (
+      <span className={`${color} text-xs font-mono flex items-center gap-1`}>
+        {icon}
+        {sign}{Math.abs(change).toFixed(2)}% ({timeframe})
+      </span>
+    );
   };
 
   return (
@@ -123,7 +325,7 @@ export default function TraderDetailModal({ trader, isOpen, onClose }: TraderDet
                 </div>
 
                 {/* Portfolio Summary */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-2">
                   <div className="bg-white/5 rounded-lg p-4 border border-white/10">
                     <p className="text-gray-400 text-sm mb-1">Portfolio Value</p>
                     <p className="text-white font-mono text-lg">
@@ -137,8 +339,16 @@ export default function TraderDetailModal({ trader, isOpen, onClose }: TraderDet
                     </div>
                   </div>
                   <div className="bg-white/5 rounded-lg p-4 border border-white/10">
-                    <p className="text-gray-400 text-sm mb-1">Positions</p>
-                    <p className="text-white font-mono text-lg">{positions.length}</p>
+                    <p className="text-gray-400 text-sm mb-1">Realized P&L</p>
+                    <div className="text-lg">
+                      {formatBTC(totalRealizedPnL)}
+                    </div>
+                  </div>
+                  <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                    <p className="text-gray-400 text-sm mb-1">Unrealized P&L</p>
+                    <div className="text-lg">
+                      {formatBTC(totalUnrealizedPnL)}
+                    </div>
                   </div>
                 </div>
 
@@ -174,31 +384,65 @@ export default function TraderDetailModal({ trader, isOpen, onClose }: TraderDet
                         animate={{ opacity: 1, y: 0 }}
                         className="bg-white/5 rounded-lg p-4 border border-white/10 hover:bg-white/10 transition-colors"
                       >
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                          <div className="flex-1">
-                            <h4 className="text-white font-medium mb-1">
-                              {position.token_name}
-                            </h4>
-                            <p className="text-gray-400 text-sm">
-                              Amount: <span className="font-mono">{formatTokenAmount(position.amount)}</span>
-                            </p>
+                        <div className="space-y-3">
+                          {/* Token header */}
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="text-white font-medium">
+                                {position.token_name}
+                              </h4>
+                              <p className="text-gray-400 text-sm">
+                                Amount: <span className="font-mono">{formatTokenAmount(position.amount)}</span>
+                                {position.realized_quantity > 0 && (
+                                  <span className="ml-2 text-xs">
+                                    (Sold: {formatTokenAmount(position.realized_quantity)})
+                                  </span>
+                                )}
+                              </p>
+                            </div>
+                            <div className="text-right">
+                              <div className="text-white font-mono text-sm">
+                                {(position.current_price * position.amount).toFixed(8)} BTC
+                              </div>
+                              <div className="text-gray-400 text-xs">
+                                Current Value
+                              </div>
+                            </div>
                           </div>
-                          
-                          <div className="flex-shrink-0 text-right">
-                            <div className="text-white font-mono text-sm mb-1">
-                              {formatPrice(position.current_price)} BTC
+
+                          {/* Price and changes */}
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <div className="text-gray-400 text-xs">Entry → Current</div>
+                              <div className="text-white font-mono text-sm">
+                                {formatPrice(position.avg_buy_price)} → {formatPrice(position.current_price)} BTC
+                              </div>
                             </div>
-                            <div className="text-xs">
-                              {formatBTC(position.pnl)}
+                            <div className="space-y-0.5 text-right">
+                              {formatPriceChange(position.price_change_1h, '1h')}
+                              {formatPriceChange(position.price_change_24h, '24h')}
                             </div>
                           </div>
-                          
-                          <div className="flex-shrink-0 text-right">
-                            <div className="text-white font-mono text-sm">
-                              {(position.current_price * position.amount).toFixed(8)} BTC
+
+                          {/* P&L breakdown */}
+                          <div className="grid grid-cols-3 gap-4 pt-2 border-t border-white/10">
+                            <div className="text-center">
+                              <div className="text-gray-400 text-xs mb-1">Realized</div>
+                              <div className="text-sm">
+                                {formatBTC(position.realized_pnl)}
+                              </div>
                             </div>
-                            <div className="text-gray-400 text-xs">
-                              Value
+                            <div className="text-center">
+                              <div className="text-gray-400 text-xs mb-1">Unrealized</div>
+                              <div className="text-sm">
+                                {formatBTC(position.unrealized_pnl)}
+                              </div>
+                            </div>
+                            <div className="text-center">
+                              <div className="text-gray-400 text-xs mb-1">Total P&L</div>
+                              <div className="text-sm font-semibold">
+                                {formatBTC(position.total_pnl)}
+                              </div>
                             </div>
                           </div>
                         </div>

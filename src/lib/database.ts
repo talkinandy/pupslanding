@@ -30,6 +30,74 @@ export class DatabaseService {
   }
 
   /**
+   * Get timeframe-specific leaderboard data
+   */
+  static async getTimeframeLeaderboard(timeframe: '24h' | '7d', limit: number = 200): Promise<DashboardTrader[]> {
+    try {
+      // Calculate the snapshot date for each timeframe
+      const today = new Date()
+      let snapshotDate: string
+      
+      switch (timeframe) {
+        case '24h':
+          snapshotDate = today.toISOString().split('T')[0]
+          break
+        case '7d':
+          const yesterday = new Date(today)
+          yesterday.setDate(yesterday.getDate() - 1)
+          snapshotDate = yesterday.toISOString().split('T')[0]
+          break
+        default:
+          snapshotDate = today.toISOString().split('T')[0]
+      }
+
+      const { data, error } = await supabase
+        .from('trader_snapshots')
+        .select(`
+          realized_pnl,
+          unrealized_pnl,
+          total_pnl,
+          rank,
+          snapshot_date,
+          traders!inner(
+            principal,
+            name
+          )
+        `)
+        .eq('snapshot_date', snapshotDate)
+        .order('rank', { ascending: true })
+        .limit(limit)
+
+      if (error) {
+        console.error(`Supabase error for ${timeframe}:`, error)
+        return []
+      }
+
+      if (!data || data.length === 0) {
+        console.warn(`No ${timeframe} data found for date: ${snapshotDate}`)
+        return []
+      }
+
+      // Transform the data to match DashboardTrader interface
+      return data.map(item => {
+        const trader = Array.isArray(item.traders) ? item.traders[0] : item.traders;
+        return {
+          principal: trader.principal,
+          name: trader.name,
+          realized_pnl: Number(item.realized_pnl),
+          unrealized_pnl: Number(item.unrealized_pnl),
+          total_pnl: Number(item.total_pnl),
+          rank: item.rank,
+          snapshot_date: item.snapshot_date
+        };
+      })
+    } catch (error) {
+      console.error(`Failed to fetch ${timeframe} leaderboard:`, error)
+      return []
+    }
+  }
+
+  /**
    * Get platform statistics
    */
   static async getPlatformStats(): Promise<DashboardStats> {
