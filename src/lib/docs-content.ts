@@ -68,7 +68,7 @@ export const docsContent: DocSection[] = [
     icon: "✨",
     description: "Central hub for all PupsBot features",
     content: {
-      overview: "The main menu is your central hub for PupsBot, accessible via /start or /trade commands. It displays your account summary and provides quick access to all major functions.",
+      overview: "The main menu is your central hub for PupsBot, accessible via /start or /trade commands. It displays your account summary and provides quick access to all major functions. Trading fees: 1% standard rate, 0.9% with invite code.",
       features: [
         {
           title: "Account Summary",
@@ -122,7 +122,8 @@ export const docsContent: DocSection[] = [
         "Minimum deposit: 0.00005 BTC",
         "2 block confirmations required",
         "~20 minutes processing time",
-        "Secure wallet generation"
+        "Secure wallet generation",
+        "No deposit fees - only network transaction fees"
       ]
     }
   },
@@ -169,7 +170,17 @@ export const docsContent: DocSection[] = [
         {
           title: "Flexible Amounts",
           description: "Choose from quick options or enter custom amounts"
+        },
+        {
+          title: "Transparent Fees",
+          description: "1% trading fee (0.9% with invite code) clearly displayed"
         }
+      ],
+      keyPoints: [
+        "Trading fees: 1% standard rate, 0.9% with invite code",
+        "Minimum buy amount: 500 sats (0.000005 BTC)",
+        "Real-time price quotes before purchase",
+        "Instant trade execution on Odin.fun platform"
       ]
     }
   },
@@ -215,7 +226,17 @@ export const docsContent: DocSection[] = [
         {
           title: "Initial Investment Recovery",
           description: "Option to sell exactly your initial investment amount"
+        },
+        {
+          title: "Fee Structure",
+          description: "Same 1% trading fee (0.9% with invite code) as purchases"
         }
+      ],
+      keyPoints: [
+        "Trading fees: 1% standard rate, 0.9% with invite code",
+        "Minimum sell amount: 500 sats (0.000005 BTC)",
+        "Real-time PnL calculations displayed",
+        "Instant execution with current market prices"
       ]
     }
   },
@@ -225,31 +246,41 @@ export const docsContent: DocSection[] = [
     icon: "📊",
     description: "Track your token portfolio",
     content: {
-      overview: "Monitor all your current token holdings and their performance. View detailed analytics including entry prices and profit/loss.",
+      overview: "Monitor all your current token holdings and their performance. View detailed analytics including entry prices, profit/loss, and complete trading history for each position.",
       features: [
         {
-          title: "Portfolio Overview",
-          description: "See all tokens with balance and current value"
+          title: "Comprehensive Portfolio View",
+          description: "See all tokens with balance, current value, and performance metrics"
         },
         {
-          title: "Performance Metrics",
-          description: "Track PnL in both USD and BTC"
+          title: "Advanced Analytics",
+          description: "Track detailed PnL in both USD and BTC with percentage gains/losses"
         },
         {
-          title: "Entry Tracking",
-          description: "View average entry prices for each position"
+          title: "Trading History",
+          description: "View complete purchase and sale history for each token"
         },
         {
-          title: "Sorting Options",
-          description: "Sort by recent activity or holding value"
+          title: "Entry Price Tracking",
+          description: "View average entry prices and cost basis for each position"
+        },
+        {
+          title: "Real-time Updates",
+          description: "Live price updates and PnL calculations"
+        },
+        {
+          title: "Portfolio Sorting",
+          description: "Sort by recent activity, holding value, or performance"
         }
       ],
       keyPoints: [
-        "Displays up to 4 tokens per page",
-        "Shows token name, balance, and performance",
-        "Average entry price calculation",
-        "Real-time PnL updates",
-        "Paginated navigation for large portfolios"
+        "Displays up to 4 tokens per page with pagination",
+        "Complete trading history and transaction details",
+        "Real-time profit/loss calculations",
+        "Average entry price with cost basis tracking",
+        "Performance metrics in both USD and BTC",
+        "Quick access to buy/sell for each position",
+        "Integration with Auto TP/SL settings"
       ]
     }
   },
@@ -436,6 +467,211 @@ export const docsContent: DocSection[] = [
     }
   },
   {
+    id: "trade",
+    title: "/trade — Alternative Main Menu",
+    icon: "💱",
+    description: "Alternative entry point to main menu",
+    content: {
+      overview: "The /trade command provides the same functionality as /start, serving as an alternative entry point to PupsBot's main menu and trading features.",
+      features: [
+        {
+          title: "Identical to /start",
+          description: "Same interface and features as the main menu"
+        },
+        {
+          title: "Quick Access",
+          description: "Alternative command for faster menu access"
+        },
+        {
+          title: "Full Trading Suite",
+          description: "Access to all buy, sell, and portfolio features"
+        }
+      ],
+      keyPoints: [
+        "Identical functionality to /start command",
+        "Alternative entry point for main menu",
+        "Same account summary and navigation",
+        "Quick access to all trading features"
+      ]
+    }
+  },
+  {
+    id: "copytrade",
+    title: "/copytrade — Copy Trading",
+    icon: "👥",
+    description: "Follow and copy successful traders",
+    content: {
+      overview: "Copy the trading strategies of successful traders on the platform. Automatically mirror their buy and sell decisions with customizable position sizing and risk management.",
+      features: [
+        {
+          title: "Trader Discovery",
+          description: "Browse and analyze top-performing traders"
+        },
+        {
+          title: "Automated Copying",
+          description: "Automatically execute the same trades as your chosen traders"
+        },
+        {
+          title: "Risk Management",
+          description: "Set custom position sizes and maximum exposure limits"
+        },
+        {
+          title: "Performance Tracking",
+          description: "Monitor your copy trading performance and statistics"
+        }
+      ],
+      steps: [
+        {
+          title: "Access Copy Trade",
+          description: "Use /copytrade command or navigate from main menu"
+        },
+        {
+          title: "Browse Traders",
+          description: "View top traders and their performance metrics"
+        },
+        {
+          title: "Select Trader",
+          description: "Choose a trader to copy based on their track record"
+        },
+        {
+          title: "Configure Settings",
+          description: "Set your position size and risk parameters",
+          note: "Recommended: Start with smaller position sizes to test strategy"
+        },
+        {
+          title: "Start Copying",
+          description: "Begin automatically copying the trader's positions"
+        },
+        {
+          title: "Monitor Performance",
+          description: "Track your copy trading results and adjust as needed"
+        }
+      ],
+      keyPoints: [
+        "Copy trades from successful traders",
+        "Customizable position sizing",
+        "Real-time trade mirroring",
+        "Performance analytics and tracking",
+        "Risk management controls",
+        "Can follow multiple traders simultaneously"
+      ]
+    }
+  },
+  {
+    id: "wallets",
+    title: "/wallets — Multiple Wallet Management",
+    icon: "🗂️",
+    description: "Manage multiple trading wallets",
+    content: {
+      overview: "Create and manage multiple isolated trading wallets within PupsBot. Each wallet operates independently with its own balance, positions, and trading history.",
+      features: [
+        {
+          title: "Multiple Wallets",
+          description: "Create and manage separate trading wallets"
+        },
+        {
+          title: "Isolated Balances",
+          description: "Each wallet maintains independent Bitcoin balances"
+        },
+        {
+          title: "Strategy Separation",
+          description: "Use different wallets for different trading strategies"
+        },
+        {
+          title: "Easy Switching",
+          description: "Quickly switch between wallets for trading"
+        }
+      ],
+      steps: [
+        {
+          title: "Access Wallets",
+          description: "Use /wallets command or navigate from main menu"
+        },
+        {
+          title: "View Current Wallets",
+          description: "See all your existing wallets and their balances"
+        },
+        {
+          title: "Create New Wallet",
+          description: "Add a new wallet with custom name and settings"
+        },
+        {
+          title: "Switch Active Wallet",
+          description: "Select which wallet to use for trading operations",
+          note: "All trading commands will use the currently active wallet"
+        },
+        {
+          title: "Manage Wallets",
+          description: "Rename, delete, or modify wallet settings"
+        }
+      ],
+      keyPoints: [
+        "Create multiple isolated trading wallets",
+        "Each wallet has independent Bitcoin balance",
+        "Switch between wallets for different strategies",
+        "All trading operations use the active wallet",
+        "Separate positions and trading history per wallet"
+      ]
+    }
+  },
+  {
+    id: "transfer",
+    title: "/transfer — Inter-wallet Transfers",
+    icon: "🔄",
+    description: "Transfer Bitcoin between your wallets",
+    content: {
+      overview: "Transfer Bitcoin between your multiple wallets instantly. Manage your Bitcoin funds across different trading strategies and wallet configurations.",
+      features: [
+        {
+          title: "Instant BTC Transfers",
+          description: "Move Bitcoin between wallets immediately"
+        },
+        {
+          title: "Bitcoin Only",
+          description: "Currently supports Bitcoin transfers only"
+        },
+        {
+          title: "No Transfer Fees",
+          description: "Internal Bitcoin transfers between your wallets are free"
+        },
+        {
+          title: "Transaction History",
+          description: "Track all inter-wallet transfer history"
+        }
+      ],
+      steps: [
+        {
+          title: "Access Transfer",
+          description: "Use /transfer command or navigate from wallets menu"
+        },
+        {
+          title: "Select Source Wallet",
+          description: "Choose the wallet to transfer funds from"
+        },
+        {
+          title: "Choose Destination",
+          description: "Select the wallet to receive the Bitcoin"
+        },
+        {
+          title: "Enter Amount",
+          description: "Specify the Bitcoin amount to transfer between wallets"
+        },
+        {
+          title: "Confirm Transfer",
+          description: "Review details and execute the Bitcoin transfer",
+          note: "Bitcoin transfers are instant and free between your wallets"
+        }
+      ],
+      keyPoints: [
+        "Instant Bitcoin transfers between your wallets",
+        "Bitcoin only - Rune tokens stay in their original wallet",
+        "No fees for internal Bitcoin transfers",
+        "Complete transfer history tracking",
+        "Helps manage Bitcoin allocation across trading strategies"
+      ]
+    }
+  },
+  {
     id: "help",
     title: "/help — Get Assistance",
     icon: "❓",
@@ -476,6 +712,9 @@ export const commandsList = [
   { command: "/positions", description: "View your portfolio" },
   { command: "/withdraw", description: "Transfer funds out" },
   { command: "/autotpsl", description: "Auto take profit/stop loss" },
+  { command: "/copytrade", description: "Copy successful traders" },
+  { command: "/wallets", description: "Manage multiple wallets" },
+  { command: "/transfer", description: "Transfer between wallets" },
   { command: "/referral", description: "Referral program" },
   { command: "/profile", description: "Manage profile" },
   { command: "/help", description: "Get assistance" }
