@@ -68,7 +68,7 @@ export const docsContent: DocSection[] = [
     icon: "✨",
     description: "Central hub for all PupsBot features",
     content: {
-      overview: "The main menu is your central hub for PupsBot, accessible via /start or /trade commands. It displays your account summary and provides quick access to all major functions. Trading fees: 1% standard rate, 0.9% with invite code.",
+      overview: "The main menu is your central hub for PupsBot, accessible via the /start command. It displays your account summary and provides quick access to all major functions. Trading fees: 1% standard rate, 0.9% with invite code.",
       features: [
         {
           title: "Account Summary",
@@ -467,35 +467,6 @@ export const docsContent: DocSection[] = [
     }
   },
   {
-    id: "trade",
-    title: "/trade — Alternative Main Menu",
-    icon: "💱",
-    description: "Alternative entry point to main menu",
-    content: {
-      overview: "The /trade command provides the same functionality as /start, serving as an alternative entry point to PupsBot's main menu and trading features.",
-      features: [
-        {
-          title: "Identical to /start",
-          description: "Same interface and features as the main menu"
-        },
-        {
-          title: "Quick Access",
-          description: "Alternative command for faster menu access"
-        },
-        {
-          title: "Full Trading Suite",
-          description: "Access to all buy, sell, and portfolio features"
-        }
-      ],
-      keyPoints: [
-        "Identical functionality to /start command",
-        "Alternative entry point for main menu",
-        "Same account summary and navigation",
-        "Quick access to all trading features"
-      ]
-    }
-  },
-  {
     id: "copytrade",
     title: "/copytrade — Copy Trading",
     icon: "👥",
@@ -705,7 +676,6 @@ export const docsContent: DocSection[] = [
 
 export const commandsList = [
   { command: "/start", description: "Open main menu" },
-  { command: "/trade", description: "Alternative to /start" },
   { command: "/deposit", description: "Add funds to wallet" },
   { command: "/buy", description: "Purchase tokens" },
   { command: "/sell", description: "Sell token holdings" },
